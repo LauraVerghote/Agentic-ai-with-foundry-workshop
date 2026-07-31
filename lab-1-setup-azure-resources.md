@@ -1,6 +1,6 @@
 # Lab 1: Set Up Azure Resources
 
-[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-prepare-data-sources.md)
+[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-create-knowledge-base.md)
 
 ---
 
@@ -22,9 +22,9 @@ The models below were chosen for this workshop based on availability and quota l
 
 | Model | Description | Best For |
 |-------|-------------|----------|
-| `gpt-4.1-mini` | Fast, cost-effective GPT-4.1 variant | General use (recommended) |
-| `gpt-4.1` | Latest GPT-4 with improved reasoning | Complex reasoning tasks |
-| `gpt-4o` | Multimodal model with vision support | Multimodal applications |
+| `gpt-5.4-mini` | Latest generation, fast and capable | General use (recommended) |
+| `gpt-4.1-mini` | Cost-effective GPT-4.1 variant | Budget-conscious projects |
+| `gpt-4.1` | Full GPT-4.1 with strong reasoning | Complex reasoning tasks |
 
 ### Embedding Models
 
@@ -34,7 +34,7 @@ The models below were chosen for this workshop based on availability and quota l
 | `text-embedding-3-large` | 3072 | Higher accuracy, larger index |
 | `text-embedding-ada-002` | 1536 | Legacy compatibility |
 
-> 💡 **Note**: This workshop uses `gpt-4.1-mini` and `text-embedding-3-small` by default. If you choose different models, update the model names in all subsequent steps.
+> 💡 **Note**: This workshop uses `gpt-5.4-mini` and `text-embedding-3-small` by default. If you choose different models, update the model names in all subsequent steps.
 
 ---
 
@@ -51,7 +51,7 @@ Microsoft Foundry is a unified AI platform that provides:
 ### What are Model Deployments?
 
 A deployment is an instance of a model that you can call via API:
-- **Chat/Reasoning Models** (e.g., `gpt-4.1-mini`): For generating natural language responses
+- **Chat/Reasoning Models** (e.g., `gpt-5.4-mini`): For generating natural language responses
 - **Embedding Models** (e.g., `text-embedding-3-small`): For converting text to vectors
 
 ---
@@ -110,25 +110,25 @@ A deployment is an instance of a model that you can call via API:
 
    <img src="images/select-project.png" width="500"/>
 
-4. **Deploy Chat Model** (default: `gpt-4.1-mini`):
-   - Go to Discovery → Models
-   - Search for `gpt-4.1-mini` (or your chosen model from the Model Options section)
+4. **Deploy Chat Model** (default: `gpt-5.4-mini`):
+   - Go to Discover → Models
+   - Search for `gpt-5.4-mini` (or your chosen model from the Model Options section)
    - Click the model → Deploy → "Default settings"
 
    <img src="images/foundry-models-1.png" width="800"/>
    <img src="images/foundry-models-2.png" width="800"/>
 
 5. **Deploy Embedding Model** (default: `text-embedding-3-small`):
-   - Repeat for `text-embedding-3-small` (or `text-embedding-ada-002`)
-   - Discovery → Models → Search → Deploy → "Default settings"
+   - Repeat for `text-embedding-3-small`
+   - Discover → Models → Search → Deploy → "Default settings"
 
 ### ✅ Checkpoint
 
 You should now have:
 - [ ] Resource group: `rg-foundry-workshop-[yourname]`
 - [ ] Foundry resource with project: `my-first-chatbot`
-- [ ] Deployed models: chat model (e.g., `gpt-4.1-mini`) and embedding model (e.g., `text-embedding-3-small`)
+- [ ] Deployed models: chat model (e.g., `gpt-5.4-mini`) and embedding model (e.g., `text-embedding-3-small`)
 
 ---
 
-[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-prepare-data-sources.md)
+[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-create-knowledge-base.md)

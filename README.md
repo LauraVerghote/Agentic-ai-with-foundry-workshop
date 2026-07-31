@@ -32,13 +32,13 @@ By the end of this workshop you will have:
 | Lab | Description | Time |
 |-----|-------------|------|
 | [Lab 1: Set Up Azure Resources](./lab-1-setup-azure-resources.md) | Create Foundry project and deploy models | 15-20 min |
-| [Lab 2: Prepare Your Data Sources](./lab-2-prepare-data-sources.md) | Upload documents to Azure Blob Storage | 10-15 min |
-| [Lab 3: Create Knowledge Base with Foundry IQ](./lab-3-create-knowledge-base.md) | Set up AI Search, vector index, and Foundry IQ | 20-30 min |
-| [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Build a tool that fills in Word templates | 20-30 min |
+| [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Upload documents and create a Foundry IQ knowledge base | 15-20 min |
+| [Lab 3: Create Your First Agent](./lab-3-create-agent.md) | Build an agent grounded in your knowledge base | 15-20 min |
+| [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Build a custom tool that fills in Word templates | 20-30 min |
 | [Lab 5: Create an Email Action with Logic Apps](./lab-5-email-logic-app.md) | Create a Logic App that sends emails | 15-20 min |
-| [Lab 6: Create and Test the Agent](./lab-6-create-test-agent.md) | Wire everything together and test | 15-20 min |
+| [Lab 6: Final Agent: Combine All Tools](./lab-6-final-agent.md) | Wire everything together and test end-to-end | 15-20 min |
 
-**Total estimated time**: 95-135 minutes
+**Total estimated time**: 95-130 minutes
 
 ## Additional Resources
 
@@ -54,3 +54,5 @@ This workshop content is provided for educational purposes.
 ---
 
 **Ready to begin?** Start with [Lab 1: Set Up Azure Resources](./lab-1-setup-azure-resources.md).
+
+> **Note**: This workshop uses the **New Foundry** portal experience at [ai.azure.com](https://ai.azure.com). Make sure the "New Foundry" toggle is enabled in the top navigation bar.
