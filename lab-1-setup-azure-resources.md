@@ -1,6 +1,6 @@
-# Sub-Lab 1.1: Set Up Azure Resources
+# Lab 1: Set Up Azure Resources
 
-[← Back to Lab 1 Overview](./README.md) | [Next: Sub-Lab 1.2 →](./sub-lab-1.2-prepare-knowledge-base.md)
+[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-prepare-data-sources.md)
 
 ---
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this sub-lab, you'll set up Microsoft Foundry and deploy the AI models that power your chatbot:
+In this lab, you'll set up Microsoft Foundry and deploy the AI models that power your agent:
 - **Chat/Reasoning Model** – generates responses to user questions
 - **Embedding Model** – converts text into vectors for semantic search
 
@@ -16,7 +16,7 @@ In this sub-lab, you'll set up Microsoft Foundry and deploy the AI models that p
 
 ## 🎯 Model Options
 
-The models below were chosen for this workshop based on availability and quota limits at the time of writing. For your own projects, you can use newer models (such as GPT-5 or later releases) depending on your needs and regional availability.
+The models below were chosen for this workshop based on availability and quota limits at the time of writing. For your own projects, you can use newer models depending on your needs and regional availability.
 
 ### Chat/Reasoning Models
 
@@ -51,8 +51,8 @@ Microsoft Foundry is a unified AI platform that provides:
 ### What are Model Deployments?
 
 A deployment is an instance of a model that you can call via API:
-- **Chat/Reasoning Models** (e.g., `gpt-4.1-mini`, `gpt-4.1`, `gpt-4o`): For generating natural language responses
-- **Embedding Models** (e.g., `text-embedding-3-small`, `text-embedding-ada-002`): For converting text to vectors
+- **Chat/Reasoning Models** (e.g., `gpt-4.1-mini`): For generating natural language responses
+- **Embedding Models** (e.g., `text-embedding-3-small`): For converting text to vectors
 
 ---
 
@@ -60,7 +60,7 @@ A deployment is an instance of a model that you can call via API:
 
 - **Resource Group**: Container for all your Azure resources
 - **Microsoft Foundry**: AI platform hub and project
-- **Model Deployments**: Chat model (default: `gpt-4.1-mini`) and embedding model (default: `text-embedding-3-small`)
+- **Model Deployments**: Chat model and embedding model
 
 ---
 
@@ -131,4 +131,4 @@ You should now have:
 
 ---
 
-[← Back to Lab 1 Overview](./README.md) | [Next: Sub-Lab 1.2 →](./sub-lab-1.2-prepare-knowledge-base.md)
+[← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-prepare-data-sources.md)

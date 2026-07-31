@@ -1,20 +1,32 @@
-# Sub-Lab 1.3: Create Vector Index
+# Lab 3: Create Knowledge Base with Foundry IQ
 
-[← Back to Lab 1 Overview](./README.md) | [← Previous: Sub-Lab 1.2](./sub-lab-1.2-prepare-knowledge-base.md) | [Next: Sub-Lab 1.4 →](./sub-lab-1.4-create-agent.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 2](./lab-2-prepare-data-sources.md) | [Next: Lab 4 →](./lab-4-word-document-tool.md)
 
 ---
 
-**⏱️ Estimated Time**: 15-20 minutes
+**⏱️ Estimated Time**: 20-30 minutes
 
 ## Overview
 
-In this sub-lab, you'll create a vector index in Azure AI Search. This index stores embeddings (numerical representations) of your documents, enabling the chatbot to find relevant information based on meaning rather than just keywords.
+In this lab you'll create a knowledge base using Foundry IQ and Azure AI Search. The flow is:
 
-You'll also configure the necessary permissions so AI Search can read your documents from Blob Storage and use the embedding model from Foundry.
+1. **Create an AI Search service** and configure permissions
+2. **Set up Foundry IQ** — connect your AI Search resource and create a knowledge base
+3. **Import and index your data** from Blob Storage into the vector index
+
+Foundry IQ is the managed knowledge layer that sits on top of your indexed data and provides intelligent, citation-grounded retrieval to your agents.
 
 ---
 
 ## 🎓 Key Concepts
+
+### What is Foundry IQ?
+
+Foundry IQ is a managed knowledge layer that connects your enterprise data to AI agents. It provides:
+- **Multi-source knowledge bases**: Connect Azure Blob Storage, SharePoint, OneLake, and web data
+- **Agentic retrieval**: Automatically decomposes complex questions into subqueries, executes them in parallel, and aggregates results
+- **Permission-aware responses**: Enforces access control so agents only return content users are authorized to see
+- **Grounded answers with citations**: Returns extractive data with sources so agents can trace answers back to documents
 
 ### What is a Vector Index?
 
@@ -42,16 +54,6 @@ These questions have different words but similar meanings:
 
 The embedding model understands this similarity!
 
-### Index Schema
-
-Our index has these fields:
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | String | Unique identifier for each chunk |
-| `content` | String | The actual text content |
-| `source` | String | Original document name |
-| `embedding` | Vector (1536) | Numerical representation |
-
 ---
 
 ## Resources You'll Create
@@ -59,14 +61,17 @@ Our index has these fields:
 - **Azure AI Search Service**: Search infrastructure
 - **Vector Index**: Searchable index with embeddings
 - **Role Assignments**: Permissions for AI Search to access Storage and Foundry
+- **Foundry IQ Knowledge Base**: Managed retrieval layer for your agent
 
 ---
 
 ## Instructions
 
-> ✏️ **Replace [yourname]** with your actual name or identifier (e.g., `jsmith`) throughout these instructions. Use the same value you chose in sub-lab 1.1.
+> ✏️ **Replace [yourname]** with your actual name or identifier (e.g., `jsmith`) throughout these instructions. Use the same value you chose in Lab 1.
 
-### 1. Create Azure AI Search Service
+### Part A: Create Azure AI Search
+
+#### 1. Create Azure AI Search Service
 
 1. Go to [Azure Portal](https://portal.azure.com)
 2. Search for "Azure AI Search" → Click "Create"
@@ -84,7 +89,7 @@ Our index has these fields:
    
 5. Wait for the AI Search to be deployed. This can take 5-10 minutes.
 
-### 2. Grant AI Search Access to Storage
+#### 2. Grant AI Search Access to Storage
 
 Your AI Search service needs permission to read documents from Blob Storage.
 
@@ -100,7 +105,7 @@ Your AI Search service needs permission to read documents from Blob Storage.
 
    <img src="images/storage-account-6.png" width="500"/>
 
-### 3. Grant AI Search Access to Foundry
+#### 3. Grant AI Search Access to Foundry
 
 Your AI Search service needs permission to use the embedding model.
 
@@ -115,7 +120,7 @@ Your AI Search service needs permission to use the embedding model.
 6. Choose **Search service** → Select: `search-chatbot-[yourname]`
 7. Click **Select** → **Review + assign** (twice)
 
-### 4. Import and Index Your Data
+#### 4. Import and Index Your Data
 
 1. Go to your AI Search resource
 2. Click **"Import data (new)"**
@@ -136,19 +141,51 @@ Your AI Search service needs permission to use the embedding model.
    - ✅ Check: "I acknowledge..."
 6. Click **Next** → **Next** → **Next** → **Create**
 
-### 5. Wait for Indexing
+#### 5. Wait for Indexing
 
 - The indexing process takes 2-5 minutes
 - Monitor progress in the Search service → Indexes section
 - Once complete, you'll see document count and status
 
+---
+
+### Part B: Set Up Foundry IQ Knowledge Base
+
+#### 1. Navigate to Foundry Portal
+
+1. Go to [Microsoft Foundry](https://ai.azure.com)
+2. Select your project (`my-first-chatbot`)
+
+#### 2. Create a Foundry IQ Connection
+
+1. In the top menu, go to **Build**
+2. Go to **"Knowledge"** on the left
+3. Connect to an AI Search resource by selecting your index at the bottom. This allows Foundry IQ to intelligently search between different knowledge sources in the knowledge base
+4. Choose **API Key** as the Auth Type
+5. Press **Connect**
+
+   <img src="images/Foundry-IQ.png" width="1000"/>
+
+#### 3. Create a Knowledge Base
+
+1. Click **"Create a knowledge base"**
+2. Choose **Azure AI Search Index** (under "Configure a knowledge base")
+3. Give a description: e.g. `Contains company info and policies`
+4. Select the `rag-XXXX` option you see under "Select search index"
+5. Select a chat completions model: `gpt-4.1-mini` (or `gpt-4.1`, `gpt-4o` if you deployed a different model in Lab 1)
+6. Click **Save "knowledge base"** on the top right
+
+---
+
 ### ✅ Checkpoint
 
 You should now have:
 - [ ] Azure AI Search service: `search-chatbot-[yourname]`
-- [ ] Vector index with your documents
+- [ ] Vector index with your documents indexed
 - [ ] Proper role assignments for Search to access Storage and Foundry
+- [ ] Foundry IQ connection to your AI Search resource
+- [ ] Knowledge base created in Foundry IQ
 
 ---
 
-[← Back to Lab 1 Overview](./README.md) | [← Previous: Sub-Lab 1.2](./sub-lab-1.2-prepare-knowledge-base.md) | [Next: Sub-Lab 1.4 →](./sub-lab-1.4-create-agent.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 2](./lab-2-prepare-data-sources.md) | [Next: Lab 4 →](./lab-4-word-document-tool.md)

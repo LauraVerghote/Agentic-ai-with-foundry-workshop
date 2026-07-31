@@ -1,6 +1,6 @@
-# Sub-Lab 1.2: Prepare Your Knowledge Base
+# Lab 2: Prepare Your Data Sources
 
-[← Back to Lab 1 Overview](./README.md) | [← Previous: Sub-Lab 1.1](./sub-lab-1.1-setup-azure-resources.md) | [Next: Sub-Lab 1.3 →](./sub-lab-1.3-create-vector-index.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 1](./lab-1-setup-azure-resources.md) | [Next: Lab 3 →](./lab-3-create-knowledge-base.md)
 
 ---
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this sub-lab, you'll upload your documents to Azure Blob Storage. These documents become the knowledge base that your chatbot can search and reference when answering questions.
+In this lab, you'll upload your documents to Azure Blob Storage. These documents become the knowledge base that your agent can search and reference when answering questions.
 
 ---
 
@@ -37,19 +37,31 @@ The `data/knowledge_base/` folder contains sample documents:
 | `company_info.txt` | Company name, founding date, products, contact info |
 | `policies.txt` | Return policy, shipping options, support channels |
 
+### Other Data Source Options
+
+In this workshop we use Azure Blob Storage, but Foundry IQ supports multiple data sources. Depending on your scenario, you could also connect:
+
+| Data Source | Best For |
+|-------------|----------|
+| **SharePoint** | Enterprise documents already stored in Microsoft 365 |
+| **OneLake (Fabric)** | Data lakehouse scenarios with unified analytics |
+| **Web URLs** | Public documentation or FAQ pages |
+
+> 💡 The steps to connect these sources differ, but the end result is the same: your agent gets a searchable knowledge base. For this workshop we use Blob Storage since it requires no additional licensing.
+
 ---
 
 ## Resources You'll Create
 
 - **Storage Account**: For storing your documents
 - **Blob Container**: Organized storage for knowledge base files
-- **Documents**: Sample files for the chatbot to learn from
+- **Documents**: Sample files for the agent to learn from
 
 ---
 
 ## Instructions
 
-> ✏️ **Replace [yourname]** with your actual name or identifier (e.g., `jsmith`) throughout these instructions. Use the same value you chose in sub-lab 1.1.
+> ✏️ **Replace [yourname]** with your actual name or identifier (e.g., `jsmith`) throughout these instructions. Use the same value you chose in Lab 1.
 
 ### 1. Create a Storage Account
 
@@ -120,4 +132,4 @@ You should now have:
 
 ---
 
-[← Back to Lab 1 Overview](./README.md) | [← Previous: Sub-Lab 1.1](./sub-lab-1.1-setup-azure-resources.md) | [Next: Sub-Lab 1.3 →](./sub-lab-1.3-create-vector-index.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 1](./lab-1-setup-azure-resources.md) | [Next: Lab 3 →](./lab-3-create-knowledge-base.md)
