@@ -68,15 +68,21 @@ When answering questions:
 
 ---
 
-## Step 4: Connect the Knowledge Base
+## Step 4: Add File Search Tool
 
-1. Scroll down in the left panel past **Tools** to the **Knowledge** section
-2. Click the expand arrow to open it (if collapsed)
-3. Click **Add** → Select **Existing knowledge base**
-4. Choose `company-knowledge-base` from the list
-5. Click **Add**
+The **File search** tool lets your agent search through uploaded documents to ground its answers.
 
-Your agent now has access to the company documents for grounded answers.
+1. In the left panel, scroll to the **Tools** section
+2. Click **Add** → Select **File search**
+3. Click **Upload files**
+4. Upload both files from the `data/knowledge_base/` folder:
+   - `company_info.txt`
+   - `policies.txt`
+5. Wait for the files to be processed (status changes to ✓)
+
+Your agent now has a vector store it can search to provide grounded answers.
+
+> 💡 File search automatically creates a **vector store** that indexes your documents for semantic search. The agent will query this store whenever it needs to answer questions.
 
 ---
 
@@ -102,7 +108,7 @@ What shipping options are available?
 
 The agent should answer using information from your knowledge base documents, with citations.
 
-> 💡 If the agent responds with generic answers instead of grounded ones, check that the Knowledge section shows your knowledge base as connected and that the status is "Active".
+> 💡 If the agent responds with generic answers instead of grounded ones, check that the File search tool shows your vector store with files listed and that their status shows as processed.
 
 ---
 
@@ -121,7 +127,7 @@ In this lab, you:
 
 - ✅ Created a new Foundry Agent (`company-chatbot`)
 - ✅ Defined agent instructions (system prompt)
-- ✅ Connected the knowledge base for RAG-grounded answers
+- ✅ Connected the File search tool for RAG-grounded answers
 - ✅ Tested the agent with questions about your company
 
 Your basic chatbot agent is now working! In the next labs, you'll add more capabilities like document generation and email sending.
