@@ -2,22 +2,9 @@
 
 ## 🎯 Lab Overview
 
-In this lab, you'll build a chatbot with Retrieval-Augmented Generation (RAG) capabilities using Microsoft Foundry. By the end of this lab, you'll have a production-ready chatbot that can answer questions based on your custom knowledge base.
+In this lab, you'll build a chatbot with Retrieval-Augmented Generation (RAG) capabilities using Microsoft Foundry. By the end of this lab, you'll have a working chatbot that can answer questions based on your custom knowledge base.
 
-**Estimated Time**: 75-105 minutes (depending on path chosen)
-
----
-
-## 🛤️ Choose Your Path
-
-This lab offers two parallel paths. Choose the one that best fits your learning goals:
-
-| Path | Description | Best For |
-|------|-------------|----------|
-| **🖥️ Portal Path** | Use Azure Portal and Foundry UI exclusively | Quick setup, visual learners, no coding required |
-| **💻 Code Path** | Build everything programmatically with Python and CLI | Developers, automation, deeper understanding |
-
-> **Tip**: You can mix and match! Start with Portal to understand concepts, then try Code for specific sections.
+**Estimated Time**: 55-75 minutes
 
 ---
 
@@ -26,7 +13,7 @@ This lab offers two parallel paths. Choose the one that best fits your learning 
 - **RAG Fundamentals**: Understanding how RAG works and is implemented in Azure
 - **Azure AI Search**: Working with embeddings and semantic search on Azure
 - **Azure Blob Storage**: Storing and managing your source documents
-- **Microsoft Foundry**: Using the unified AI platform for deployment
+- **Microsoft Foundry**: Using the unified AI platform for building agents
 
 ---
 
@@ -74,28 +61,19 @@ flowchart LR
 
 ## 📋 Sub-Labs
 
-| Sub-Lab | Time | Portal | Code |
-|---------|------|:------:|:----:|
-| [1.1 Set Up Azure Resources](./sub-lab-1.1-setup-azure-resources.md) | 15-20 min | ✅ | ✅ |
-| [1.2 Prepare Your Knowledge Base](./sub-lab-1.2-prepare-knowledge-base.md) | 10-15 min | ✅ | ✅ |
-| [1.3 Create Vector Index](./sub-lab-1.3-create-vector-index.md) | 15-20 min | ✅ | ✅ |
-| [1.4 Create Your Agent in Foundry](./sub-lab-1.4-create-agent.md) | 15-20 min | ✅ | ✅ |
-| [1.5 Host Agent as Web App](./sub-lab-1.5-host-agent-webapp.md) | 20-30 min | ❌ | ✅ |
+| Sub-Lab | Time |
+|---------|------|
+| [1.1 Set Up Azure Resources](./sub-lab-1.1-setup-azure-resources.md) | 15-20 min |
+| [1.2 Prepare Your Knowledge Base](./sub-lab-1.2-prepare-knowledge-base.md) | 10-15 min |
+| [1.3 Create Vector Index](./sub-lab-1.3-create-vector-index.md) | 15-20 min |
+| [1.4 Create Your Agent in Foundry](./sub-lab-1.4-create-agent.md) | 15-20 min |
 
 ---
 
-Complete these individual labs before continuing to Lab 2. 
-
-##  Additional Resources
+## Additional Resources
 
 - [Microsoft Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
 - [Azure AI Search RAG Tutorial](https://learn.microsoft.com/en-us/azure/search/search-get-started-rag)
 - [RAG Best Practices](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
-
----
-
-## 🚀 Next Steps
-
-Ready to add voice capabilities? Head over to [Lab 2: Adding Voice Capabilities](../lab-2-voice-capabilities/README.md)!
 
 
