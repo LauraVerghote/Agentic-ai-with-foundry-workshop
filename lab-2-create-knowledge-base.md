@@ -4,53 +4,107 @@
 
 ---
 
-**⏱️ Estimated Time**: 15-20 minutes
+**⏱️ Estimated Time**: 20-25 minutes
 
 ## Overview
 
-In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. You'll upload documents directly and Foundry IQ will handle storage, indexing, and vectorization automatically.
+In this lab, you'll create a **knowledge base** for your chatbot. You'll first upload your documents to **Azure Blob Storage**, then use **Foundry IQ** to connect to that storage and automatically index your documents for AI-powered retrieval.
 
-No separate storage account or AI Search setup needed. Foundry IQ manages everything for you.
+This approach mirrors real-world patterns where documents already live in cloud storage and need to be connected to an AI system.
 
 ---
 
 ## 🎓 Key Concepts
 
+### What is Azure Blob Storage?
+
+Azure Blob Storage is Microsoft's object storage solution for the cloud:
+
+- **Blobs**: Binary Large Objects (any type of file)
+- **Containers**: Logical groupings of blobs (like folders)
+- **Storage Account**: Top-level namespace for your data
+
 ### What is Foundry IQ?
 
-Foundry IQ is a managed knowledge layer that connects your enterprise data to AI agents:
+Foundry IQ is the managed knowledge layer in Microsoft Foundry that connects your enterprise data to AI agents:
 
-- **Direct file upload**: Upload documents without needing a separate storage account
 - **Automatic vectorization**: Your documents are automatically chunked, embedded, and indexed
 - **Agentic retrieval**: Complex questions are automatically decomposed into subqueries
-- **Grounded answers with citations**: Returns extractive data with sources
+- **Grounded answers with citations**: Returns extractive data with source references
 
 ### How It Works
 
 ```mermaid
 flowchart LR
-    A["Upload Documents"] --> B["Foundry IQ"]
+    A["Documents in Blob Storage"] --> B["Foundry IQ"]
     B --> C["Chunking & Embedding"]
     C --> D["Vector Index (AI Search)"]
     D --> E["Agent queries knowledge"]
 ```
 
-### Supported File Types
+---
 
-Foundry IQ supports: **PDF, DOCX, MD, TXT, JSON, CSV**, and more (up to 50 MB per file).
+## Step 1: Create a Storage Account
+
+1. Go to the [Azure Portal](https://portal.azure.com)
+2. Search for **"Storage accounts"** in the top search bar and click **Create**
+3. Configure:
+   - **Resource group**: `rg-foundry-workshop-[yourname]`
+   - **Storage account name**: `stchatbot[yourname]` (must be globally unique, lowercase, no special characters)
+   - **Region**: East US
+   - **Performance**: Standard
+   - **Redundancy**: Locally-redundant storage (LRS)
+4. Click **Review + Create** → **Create**
+
+> 💡 Storage account names must be between 3 and 24 characters, using only lowercase letters and numbers.
 
 ---
 
-## Step 1: Navigate to Knowledge (Foundry IQ)
+## Step 2: Create a Blob Container
 
-1. In the **Microsoft Foundry** portal, make sure you're in your project (`company-assistant`)
+1. Once the storage account is deployed, click **Go to resource**
+2. In the left menu under **Data storage**, click **Containers**
+3. Click **+ Container**
+4. Configure:
+   - **Name**: `knowledge-base-container`
+   - **Anonymous access level**: Private
+5. Click **Create**
+
+---
+
+## Step 3: Upload Your Documents
+
+1. Click on your `knowledge-base-container` to open it
+
+> ⚠️ **Permissions Error?** If you see *"You do not have permissions to list the data using your user account with Microsoft Entra ID..."*, you need to grant yourself data plane permissions:
+>
+> 1. Go to **Access Control (IAM)** on your storage account
+> 2. Click **Add** → **Add role assignment**
+> 3. Choose role: **Storage Blob Data Contributor**
+> 4. Click **Next** → Select **User, group, or service principal** → Click **Select members** → Select yourself
+> 5. Click **Review + assign** (twice)
+> 6. Wait 1-2 minutes, then refresh the page
+
+2. Click **Upload**
+3. Select both files from the `data/knowledge_base/` folder in this repository:
+   - `company_info.txt`
+   - `policies.txt`
+4. Click **Upload**
+
+You should see both files listed in your container.
+
+---
+
+## Step 4: Navigate to Knowledge (Foundry IQ)
+
+1. Go back to the [Microsoft Foundry portal](https://ai.azure.com) and make sure you're in your project (`company-assistant`)
 2. In the left navigation under **Build**, click **Knowledge**
 
 You'll see the **Knowledge (Foundry IQ)** page with two tabs: Knowledge bases and Indexes.
 
 ---
 
-## Step 2: Connect a Foundry IQ Resource
+## Step 5: Connect an AI Search Resource
 
 The first time you use Knowledge, you'll need to connect an AI Search resource:
 
@@ -71,40 +125,43 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 ---
 
-## Step 3: Create a Knowledge Base
+## Step 6: Create a Knowledge Base
 
 1. Click **Create a knowledge base**
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
    - **Description**: `Company information and policies for the chatbot agent`
-   - **Chat completions model**: Select `gpt-5.4-mini` (from your deployments)
+   - **Chat completions model**: Select `gpt-5.5` (from your deployments)
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
 
 ---
 
-## Step 4: Add a Knowledge Source and Upload Files
+## Step 7: Add a Knowledge Source from Blob Storage
 
-1. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
+1. In the **Knowledge sources (Foundry IQ)** section, click **Add sources**
 2. A "Create a knowledge source" dialog appears:
-   - **Source type**: File (Preview), "Upload files directly, no storage account needed"
+   - **Source type**: Select **Azure Blob Storage**
    - **Name**: `company-docs`
    - **Embedding model**: `text-embedding-3-small` should be auto-selected
-3. In the **Drop files here or browse** area, upload both files from the `data/knowledge_base/` folder:
-   - `company_info.txt`
-   - `policies.txt`
-4. Click **Create**
+   - **Storage account**: Select `stchatbot[yourname]`
+   - **Container**: Select `knowledge-base-container`
+3. Click **Create**
 
-> ⚠️ **If upload fails**: Wait 2-3 minutes for the managed identity permissions to propagate, then click **Retry**. The search service needs time for its "Cognitive Services User" role assignment to take effect.
+> ⚠️ **If connection fails**: The AI Search service needs the **Storage Blob Data Reader** role on your storage account. Foundry IQ usually assigns this automatically, but if it fails:
+>
+> 1. Go to **Azure Portal** → Your Storage Account → **Access Control (IAM)**
+> 2. Click **Add** → **Add role assignment**
+> 3. Select role: **Storage Blob Data Reader**
+> 4. Assign to **Managed identity** → Select your **AI Search** service
+> 5. Click **Review + assign**
+> 6. Wait 2-3 minutes, then retry
 
 ---
 
-## Step 5: Save the Knowledge Base
+## Step 8: Save the Knowledge Base
 
-1. Once you see **"Uploaded 2 files to company-docs"** in the success notification, verify:
-   - The knowledge source shows **"Active"** status
-   - File count shows **"2 files"**
-2. Click **Save knowledge base** at the top right
+1. Once you see the knowledge source with **"Active"** status and **"2 files"** listed, click **Save knowledge base** at the top right
 
 You're now on the knowledge base detail page showing your configured `company-knowledge-base`.
 
@@ -114,9 +171,10 @@ You're now on the knowledge base detail page showing your configured `company-kn
 
 In this lab, you:
 
-- ✅ Created a Foundry IQ resource (Azure AI Search) with automated RBAC
-- ✅ Created a knowledge base with `gpt-5.4-mini` for reasoning
-- ✅ Uploaded documents directly (no storage account needed!)
+- ✅ Created a Storage Account with a blob container
+- ✅ Uploaded your documents to Azure Blob Storage
+- ✅ Connected a Foundry IQ resource (Azure AI Search) with automated RBAC
+- ✅ Created a knowledge base connected to your blob storage
 - ✅ Files are automatically chunked, embedded with `text-embedding-3-small`, and indexed
 
 Your knowledge base is now ready to be connected to an agent in the next lab.
@@ -125,9 +183,9 @@ Your knowledge base is now ready to be connected to an agent in the next lab.
 
 ## 💡 Tips
 
-- **Adding more documents later**: You can always come back and click "Upload files" to add more documents to the knowledge source.
-- **Multiple knowledge sources**: A single knowledge base can have multiple sources (files, SharePoint, web URLs). You can click "Add sources" to connect additional data.
-- **Different data sources**: In a real scenario, you might connect SharePoint document libraries or OneLake data instead of uploading files directly.
+- **Adding more documents later**: Upload new files to your blob container, then click "Sync" on the knowledge source in Foundry IQ to re-index.
+- **Multiple knowledge sources**: A single knowledge base can have multiple sources (blob storage, SharePoint, web URLs). You can click "Add sources" to connect additional data.
+- **Why Blob Storage?**: In production, documents often already live in cloud storage. This pattern lets you manage your files independently and connect them to multiple AI systems.
 
 ---
 
