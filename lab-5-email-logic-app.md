@@ -53,7 +53,7 @@ The agent determines when to call the tool based on the user's request, formats 
    - **Subscription**: Select your subscription
    - **Resource Group**: `rg-foundry-workshop-[yourname]`
    - **Logic App name**: `logic-send-email-[yourname]`
-   - **Region**: East US 2
+   - **Region**: East US
    - **Plan type**: **Consumption** (pay per execution)
 6. Click **Review + create** → **Create**
 7. Once deployed, click **Go to resource**

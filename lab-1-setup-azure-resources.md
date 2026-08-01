@@ -55,14 +55,14 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
 3. Configure:
    - **Name**: `rg-foundry-workshop-[yourname]`
-   - **Region**: East US 2
+   - **Region**: East US
 4. Click "Review + Create" → "Create"
 
    <img src="images/resource-group-console-3.png" width="500"/>
 
 ### 2. Create Microsoft Foundry Resource
 
-1. Search for "Microsoft Foundry" in the Azure Portal
+1. Search for "Microsoft Foundry" in the top search bar in the Azure Portal
 2. Click "Create"
 
    <img src="images/foundry-resource-1.png" width="500"/>
@@ -70,8 +70,8 @@ A deployment is an instance of a model that you can call via API. In this worksh
 3. Configure:
    - **Resource group**: `rg-foundry-workshop-[yourname]`
    - **Name**: `foundry-workshop-[yourname]`
-   - **Region**: East US 2
-   - **Default project name**: `my-first-chatbot`
+   - **Region**: East US
+   - **Default project name**: `company-assistant`
 4. Click "Review + Create" → "Create"
 
    <img src="images/foundry-resource-2.png" width="500"/>
@@ -83,7 +83,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
    <img src="images/new-foundry.png" width="800"/>
 
-3. Select your project (`my-first-chatbot`) → "Let's go"
+3. Select your project (`company-assistant`) → "Let's go"
 
    <img src="images/select-project.png" width="500"/>
 
@@ -103,7 +103,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
 You should now have:
 - [ ] Resource group: `rg-foundry-workshop-[yourname]`
-- [ ] Foundry resource with project: `my-first-chatbot`
+- [ ] Foundry resource with project: `company-assistant`
 - [ ] Deployed models: chat model (e.g., `gpt-5.5`) and embedding model (e.g., `text-embedding-3-small`)
 
 ---

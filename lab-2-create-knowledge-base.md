@@ -43,7 +43,7 @@ Foundry IQ supports: **PDF, DOCX, MD, TXT, JSON, CSV**, and more (up to 50 MB pe
 
 ## Step 1: Navigate to Knowledge (Foundry IQ)
 
-1. In the **Microsoft Foundry** portal, make sure you're in your project (`my-first-chatbot`)
+1. In the **Microsoft Foundry** portal, make sure you're in your project (`company-assistant`)
 2. In the left navigation under **Build**, click **Knowledge**
 
 You'll see the **Knowledge (Foundry IQ)** page with two tabs: Knowledge bases and Indexes.
@@ -56,7 +56,7 @@ The first time you use Knowledge, you'll need to connect an AI Search resource:
 
 1. Click **Create new resource**
 2. In the dialog that appears:
-   - **Resource name**: Leave the auto-generated name (e.g., `my-first-chatbot-srch-xxxxx`)
+   - **Resource name**: Leave the auto-generated name (e.g., `company-assistant-srch-xxxxx`)
    - **Subscription**: Select your subscription
    - **Resource group**: `rg-foundry-workshop-[yourname]`
    - **Region**: Choose a region that has capacity (if you see a "region at capacity" warning, try another region like **West US 2** or **North Central US**)
