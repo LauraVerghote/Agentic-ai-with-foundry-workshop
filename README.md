@@ -2,7 +2,7 @@
 
 ## 🎯 Workshop Overview
 
-In this hands-on workshop you'll build an agentic AI assistant using Microsoft Foundry. The agent can search a knowledge base, fill in Word documents, and send emails — all orchestrated through a single Foundry Agent.
+In this hands-on workshop you'll build an agentic AI assistant using Microsoft Foundry. The agent can search a knowledge base, fill in Word documents, and send emails, all orchestrated through a single Foundry Agent.
 
 ### What You'll Build
 

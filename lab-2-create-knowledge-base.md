@@ -8,9 +8,9 @@
 
 ## Overview
 
-In this lab, you'll create a **knowledge base** using **Foundry IQ** — the managed knowledge layer in Microsoft Foundry. You'll upload documents directly and Foundry IQ will handle storage, indexing, and vectorization automatically.
+In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. You'll upload documents directly and Foundry IQ will handle storage, indexing, and vectorization automatically.
 
-No separate storage account or AI Search setup needed — Foundry IQ manages everything for you.
+No separate storage account or AI Search setup needed. Foundry IQ manages everything for you.
 
 ---
 
@@ -37,7 +37,7 @@ flowchart LR
 
 ### Supported File Types
 
-Foundry IQ supports: **PDF, DOCX, MD, TXT, JSON, CSV**, and more — up to 50 MB per file.
+Foundry IQ supports: **PDF, DOCX, MD, TXT, JSON, CSV**, and more (up to 50 MB per file).
 
 ---
 
@@ -87,7 +87,7 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 1. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
 2. A "Create a knowledge source" dialog appears:
-   - **Source type**: File (Preview) — "Upload files directly — no storage account needed"
+   - **Source type**: File (Preview), "Upload files directly, no storage account needed"
    - **Name**: `company-docs`
    - **Embedding model**: `text-embedding-3-small` should be auto-selected
 3. In the **Drop files here or browse** area, upload both files from the `data/knowledge_base/` folder:

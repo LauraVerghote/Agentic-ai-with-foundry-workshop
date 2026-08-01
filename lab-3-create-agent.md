@@ -85,17 +85,17 @@ Your agent now has access to the company documents for grounded answers.
 1. Click **Save** at the top right (the version number will increment)
 2. In the **Chat** panel on the right, try these test questions:
 
-**Test 1 — Company info:**
+**Test 1: Company info**
 ```
 What is the name of the company and when was it founded?
 ```
 
-**Test 2 — Policy question:**
+**Test 2: Policy question**
 ```
 What is the return policy?
 ```
 
-**Test 3 — Shipping options:**
+**Test 3: Shipping options**
 ```
 What shipping options are available?
 ```

@@ -107,9 +107,9 @@ The agent determines when to call the tool based on the user's request, formats 
 After saving, the HTTP trigger will show a **HTTP POST URL** at the top of the trigger step.
 
 1. Click on the "When a HTTP request is received" step
-2. Copy the **HTTP POST URL** — you'll need this for the next step
+2. Copy the **HTTP POST URL**. You'll need this for the next step
 
-> ⚠️ **Keep this URL secure** — it contains a SAS token that allows anyone with it to trigger your Logic App.
+> ⚠️ **Keep this URL secure**. It contains a SAS token that allows anyone with it to trigger your Logic App.
 
 ---
 
@@ -162,7 +162,7 @@ paths:
           description: Email sent successfully
 ```
 
-7. Set the **Server URL** to your Logic App HTTP POST URL (without the query parameters — the full URL acts as the endpoint)
+7. Set the **Server URL** to your Logic App HTTP POST URL (without the query parameters; the full URL acts as the endpoint)
 8. Click **Save**
 
 ---
@@ -209,7 +209,7 @@ Click **Save**.
 
 In the chat panel, try:
 
-**Test 1 — Direct email request:**
+**Test 1: Direct email request**
 ```
 Send an email to test@example.com with the subject "Hello from the workshop" and body "This is a test email from our Foundry agent!"
 ```
@@ -220,7 +220,7 @@ The agent should:
 3. Call the `send-email` tool
 4. Report success or failure
 
-**Test 2 — Knowledge + email combo:**
+**Test 2: Knowledge + email combo**
 ```
 Look up our return policy and send a summary to customer@example.com
 ```
@@ -243,7 +243,7 @@ In this lab, you:
 - ✅ Connected the tool to your agent
 - ✅ Tested agent-triggered email sending
 
-Your agent can now send emails on behalf of the user — a real-world action triggered by natural language!
+Your agent can now send emails on behalf of the user, a real-world action triggered by natural language!
 
 ---
 
@@ -252,13 +252,13 @@ Your agent can now send emails on behalf of the user — a real-world action tri
 - **Testing without sending**: Use a personal email address for testing, or add a condition in the Logic App to skip sending in dev mode
 - **Logic App monitoring**: Check the Logic App's **Run history** in the Azure Portal to see execution details
 - **Error handling**: Add a "Condition" step in the Logic App to handle cases where the email connector fails
-- **Other actions**: Logic Apps can also post to Teams, create calendar events, write to SharePoint, and more — any of these could be registered as additional tools
+- **Other actions**: Logic Apps can also post to Teams, create calendar events, write to SharePoint, and more. Any of these could be registered as additional tools
 
 ---
 
 ## 🔒 Security Considerations
 
-- The Logic App HTTP URL contains a SAS key — treat it like a password
+- The Logic App HTTP URL contains a SAS key. Treat it like a password
 - In production, use Azure API Management or managed identity instead of SAS URLs
 - Consider adding input validation in the Logic App to prevent misuse
 - The Office 365 connector uses delegated permissions tied to the signed-in account

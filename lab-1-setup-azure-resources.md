@@ -9,8 +9,8 @@
 ## Overview
 
 In this lab, you'll set up Microsoft Foundry and deploy the AI models that power your agent:
-- **Chat/Reasoning Model** – generates responses to user questions
-- **Embedding Model** – converts text into vectors for semantic search
+- **Chat/Reasoning Model**: generates responses to user questions
+- **Embedding Model**: converts text into vectors for semantic search
 
 ---
 
@@ -22,9 +22,9 @@ The models below were chosen for this workshop based on availability and quota l
 
 | Model | Description | Best For |
 |-------|-------------|----------|
-| `gpt-5.4-mini` | Latest generation, fast and capable | General use (recommended) |
-| `gpt-4.1-mini` | Cost-effective GPT-4.1 variant | Budget-conscious projects |
-| `gpt-4.1` | Full GPT-4.1 with strong reasoning | Complex reasoning tasks |
+| `gpt-5.5` | Most capable reasoning model (1M context) | Complex tasks (recommended) |
+| `gpt-5.4-mini` | Fast, cost-effective, 400K context | General use / budget option |
+| `gpt-5.4` | Full GPT-5.4 with advanced reasoning | Multi-step reasoning |
 
 ### Embedding Models
 
@@ -34,7 +34,7 @@ The models below were chosen for this workshop based on availability and quota l
 | `text-embedding-3-large` | 3072 | Higher accuracy, larger index |
 | `text-embedding-ada-002` | 1536 | Legacy compatibility |
 
-> 💡 **Note**: This workshop uses `gpt-5.4-mini` and `text-embedding-3-small` by default. If you choose different models, update the model names in all subsequent steps.
+> 💡 **Note**: This workshop uses `gpt-5.5` and `text-embedding-3-small` by default. If quota is unavailable for `gpt-5.5`, use `gpt-5.4-mini` as an alternative. Update the model names in subsequent steps if needed.
 
 ---
 
@@ -51,7 +51,7 @@ Microsoft Foundry is a unified AI platform that provides:
 ### What are Model Deployments?
 
 A deployment is an instance of a model that you can call via API:
-- **Chat/Reasoning Models** (e.g., `gpt-5.4-mini`): For generating natural language responses
+- **Chat/Reasoning Models** (e.g., `gpt-5.5`): For generating natural language responses
 - **Embedding Models** (e.g., `text-embedding-3-small`): For converting text to vectors
 
 ---
@@ -110,9 +110,9 @@ A deployment is an instance of a model that you can call via API:
 
    <img src="images/select-project.png" width="500"/>
 
-4. **Deploy Chat Model** (default: `gpt-5.4-mini`):
+4. **Deploy Chat Model** (default: `gpt-5.5`):
    - Go to Discover → Models
-   - Search for `gpt-5.4-mini` (or your chosen model from the Model Options section)
+   - Search for `gpt-5.5` (or your chosen model from the Model Options section)
    - Click the model → Deploy → "Default settings"
 
    <img src="images/foundry-models-1.png" width="800"/>
@@ -127,7 +127,7 @@ A deployment is an instance of a model that you can call via API:
 You should now have:
 - [ ] Resource group: `rg-foundry-workshop-[yourname]`
 - [ ] Foundry resource with project: `my-first-chatbot`
-- [ ] Deployed models: chat model (e.g., `gpt-5.4-mini`) and embedding model (e.g., `text-embedding-3-small`)
+- [ ] Deployed models: chat model (e.g., `gpt-5.5`) and embedding model (e.g., `text-embedding-3-small`)
 
 ---
 

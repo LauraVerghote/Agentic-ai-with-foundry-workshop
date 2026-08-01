@@ -8,9 +8,9 @@
 
 ## Overview
 
-In this lab you'll enable the **Code Interpreter** tool on your agent. Code Interpreter allows the agent to write and execute Python code in a sandboxed environment — meaning your agent can now generate files, create charts, analyze data, and produce Word/PDF documents on demand.
+In this lab you'll enable the **Code Interpreter** tool on your agent. Code Interpreter allows the agent to write and execute Python code in a sandboxed environment, meaning your agent can now generate files, create charts, analyze data, and produce Word/PDF documents on demand.
 
-This demonstrates how Foundry Agents go beyond answering questions — they can **take action** and produce tangible outputs.
+This demonstrates how Foundry Agents go beyond just answering questions: they can **take action** and produce tangible outputs.
 
 ---
 
@@ -19,10 +19,10 @@ This demonstrates how Foundry Agents go beyond answering questions — they can 
 ### What are Agent Tools?
 
 Tools extend what an agent can do beyond just answering questions. A tool is a function the agent can call when it determines the user's request requires an action. Examples:
-- **Knowledge bases** — search company documents (Lab 3)
-- **Code Interpreter** — write and run Python code to create files
-- **Web Search** — search the internet for current information
-- **Custom tools** — call external APIs (Lab 5)
+- **Knowledge bases**: search company documents (Lab 3)
+- **Code Interpreter**: write and run Python code to create files
+- **Web Search**: search the internet for current information
+- **Custom tools**: call external APIs (Lab 5)
 
 ### What is Code Interpreter?
 
@@ -30,7 +30,7 @@ Code Interpreter is a **built-in tool** that:
 - Runs Python code in an isolated sandbox
 - Can install and use common Python packages (e.g., `python-docx`, `matplotlib`, `pandas`)
 - Produces downloadable files (Word docs, PDFs, images, CSVs)
-- Has no access to your Azure resources or network — it's fully sandboxed
+- Has no access to your Azure resources or network (it's fully sandboxed)
 
 ### How It Works
 
@@ -104,7 +104,7 @@ Click **Save** in the top right. The version number will increment.
 
 In the **Chat** panel on the right, try these prompts:
 
-**Test 1 — Simple document:**
+**Test 1: Simple document**
 ```
 Create a Word document with a summary of our company's return policy.
 ```
@@ -114,12 +114,12 @@ The agent should:
 2. Write Python code using `python-docx` to create a .docx file
 3. Return a downloadable link to the document
 
-**Test 2 — Formatted letter:**
+**Test 2: Formatted letter**
 ```
 Generate a Word document with a welcome letter for a new employee named Sarah Johnson starting on August 15, 2026 in the Engineering department. Include our company name and key policies they should know about.
 ```
 
-**Test 3 — Data table:**
+**Test 3: Data table**
 ```
 Create a Word document with a table listing our shipping options and their details.
 ```
@@ -138,7 +138,7 @@ Create a Word document with a table listing our shipping options and their detai
    - The execution result
    - The file output
 
-This is useful for debugging if the document doesn't look right — you can see exactly what code was generated.
+This is useful for debugging if the document doesn't look right. You can see exactly what code was generated.
 
 ---
 
@@ -160,7 +160,7 @@ Your agent can now both answer questions AND produce tangible outputs!
 - **File uploads**: You can also upload files TO Code Interpreter (click the attach button in chat) for the agent to analyze
 - **Charts and visualizations**: Try asking for matplotlib charts or data visualizations
 - **CSV/Excel**: The agent can also generate spreadsheets and CSV files
-- **Iterate**: If the document format isn't right, ask the agent to adjust it — it remembers the conversation context
+- **Iterate**: If the document format isn't right, ask the agent to adjust it. It remembers the conversation context
 
 ---
 

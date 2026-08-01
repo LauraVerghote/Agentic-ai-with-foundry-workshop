@@ -1,4 +1,4 @@
-# Lab 6: Final Agent — Combine All Tools
+# Lab 6: Final Agent, Combine All Tools
 
 [← Back to Workshop Overview](./README.md) | [← Previous: Lab 5](./lab-5-email-logic-app.md)
 
@@ -52,17 +52,17 @@ In the agent playground, verify:
 
 Test the full agent with these scenarios:
 
-**Scenario 1 — Knowledge retrieval:**
+**Scenario 1: Knowledge retrieval**
 ```
 What shipping options does the company offer?
 ```
 
-**Scenario 2 — Document generation:**
+**Scenario 2: Document generation**
 ```
 Create a welcome letter for a new employee named Sarah Johnson who starts on August 15, 2026 in the Engineering department.
 ```
 
-**Scenario 3 — Multi-step task:**
+**Scenario 3: Multi-step task**
 ```
 Look up the return policy and then send an email to customer@example.com summarizing it.
 ```
