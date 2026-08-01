@@ -8,33 +8,7 @@
 
 ## Overview
 
-In this lab, you'll set up Microsoft Foundry and deploy the AI models that power your agent:
-- **Chat/Reasoning Model**: generates responses to user questions
-- **Embedding Model**: converts text into vectors for semantic search
-
----
-
-## 🎯 Model Options
-
-The models below were chosen for this workshop based on availability and quota limits at the time of writing. For your own projects, you can use newer models depending on your needs and regional availability.
-
-### Chat/Reasoning Models
-
-| Model | Description | Best For |
-|-------|-------------|----------|
-| `gpt-5.5` | Most capable reasoning model (1M context) | Complex tasks (recommended) |
-| `gpt-5.4-mini` | Fast, cost-effective, 400K context | General use / budget option |
-| `gpt-5.4` | Full GPT-5.4 with advanced reasoning | Multi-step reasoning |
-
-### Embedding Models
-
-| Model | Dimensions | Best For |
-|-------|------------|----------|
-| `text-embedding-3-small` | 1536 | General use (recommended) |
-| `text-embedding-3-large` | 3072 | Higher accuracy, larger index |
-| `text-embedding-ada-002` | 1536 | Legacy compatibility |
-
-> 💡 **Note**: This workshop uses `gpt-5.5` and `text-embedding-3-small` by default. If quota is unavailable for `gpt-5.5`, use `gpt-5.4-mini` as an alternative. Update the model names in subsequent steps if needed.
+In this lab, you'll set up Microsoft Foundry and deploy the AI models that power your agent.
 
 ---
 
@@ -50,9 +24,12 @@ Microsoft Foundry is a unified AI platform that provides:
 
 ### What are Model Deployments?
 
-A deployment is an instance of a model that you can call via API:
-- **Chat/Reasoning Models** (e.g., `gpt-5.5`): For generating natural language responses
-- **Embedding Models** (e.g., `text-embedding-3-small`): For converting text to vectors
+A deployment is an instance of a model that you can call via API. In this workshop we'll deploy two models:
+
+| Type | Model | What it does |
+|------|-------|--------------|
+| Chat / Reasoning | `gpt-5.5` | Generates natural language responses (1M token context) |
+| Embedding | `text-embedding-3-small` | Converts text to vectors for semantic search (1536 dimensions) |
 
 ---
 
