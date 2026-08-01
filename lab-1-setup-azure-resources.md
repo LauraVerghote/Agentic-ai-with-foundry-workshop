@@ -78,19 +78,18 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
 ### 3. Deploy AI Models
 
-1. Go to your Foundry resource → Click "Go to Foundry portal"
+1. When the deployment is complete, click 'Go to resource' → Click "Go to Foundry portal"
 2. Toggle "New Foundry" experience if prompted
 
    <img src="images/new-foundry.png" width="800"/>
 
-3. Select your project (`company-assistant`) → "Let's go"
+3. In case you are asked to Select a project to continue, select (`company-assistant`) → "Let's go"
 
-   <img src="images/select-project.png" width="500"/>
 
 4. **Deploy Chat Model** (default: `gpt-5.5`):
-   - Go to Discover → Models
+   - Click on the Discover tab on the top → Models tab on the left
    - Search for `gpt-5.5` (or your chosen model from the Model Options section)
-   - Click the model → Deploy → "Default settings"
+   - Click the model → Deploy on the top right → "Default settings"
 
    <img src="images/foundry-models-1.png" width="800"/>
    <img src="images/foundry-models-2.png" width="800"/>
