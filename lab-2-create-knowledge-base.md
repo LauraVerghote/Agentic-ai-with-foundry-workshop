@@ -32,6 +32,20 @@ Foundry IQ is the managed knowledge layer in Microsoft Foundry that connects you
 - **Agentic retrieval**: Complex questions are automatically decomposed into subqueries
 - **Grounded answers with citations**: Returns extractive data with source references
 
+### Supported Data Sources
+
+Foundry IQ can connect to multiple types of data sources:
+
+| Source | Description |
+|--------|-------------|
+| **Azure Blob Storage** | Files stored in cloud storage containers (used in this lab) |
+| **SharePoint** | Documents from SharePoint sites and document libraries |
+| **OneLake** | Data from Microsoft Fabric lakehouses |
+| **Web URLs** | Content from public web pages |
+| **Direct file upload** | Upload files directly without a separate storage account |
+
+In this lab, we use **Azure Blob Storage** because it's the most common pattern in production: your documents live in cloud storage, and Foundry IQ connects to them. In your own projects, you could just as easily point to a SharePoint document library where your team already stores files.
+
 ### How It Works
 
 ```mermaid
