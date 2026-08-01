@@ -62,12 +62,17 @@ flowchart LR
 
 1. Go to the [Azure Portal](https://portal.azure.com)
 2. Search for **"Storage accounts"** in the top search bar and click **Create**
+
+![Storage accounts page with Create button](./images/storage-account-1.png)
+
 3. Configure:
    - **Resource group**: `rg-foundry-workshop-[yourname]`
    - **Storage account name**: `stchatbot[yourname]` (must be globally unique, lowercase, no special characters)
    - **Region**: East US
    - **Performance**: Standard
    - **Redundancy**: Locally-redundant storage (LRS)
+![Storage account configuration](./images/storage-account-2.png)
+
 4. Click **Review + Create** → **Create**
 
 > 💡 Storage account names must be between 3 and 24 characters, using only lowercase letters and numbers.
@@ -84,13 +89,17 @@ flowchart LR
    - **Anonymous access level**: Private
 5. Click **Create**
 
+![Create blob container](./images/storage-account-3.png)
+
 ---
 
 ## Step 3: Upload Your Documents
 
 1. Click on your `knowledge-base-container` to open it
 
-> ⚠️ **Permissions Error?** If you see *"You do not have permissions to list the data using your user account with Microsoft Entra ID..."*, you need to grant yourself data plane permissions:
+> ⚠️ **Permissions Error?** If you see the error below, you need to grant yourself data plane permissions:
+>
+> ![Permissions error](./images/storage-account-4.png)
 >
 > 1. Go to **Access Control (IAM)** on your storage account
 > 2. Click **Add** → **Add role assignment**
@@ -105,6 +114,8 @@ flowchart LR
    - `policies.txt`
 4. Click **Upload**
 
+![Upload files to blob storage](./images/storage-account-5.png)
+
 You should see both files listed in your container.
 
 ---
@@ -115,6 +126,8 @@ You should see both files listed in your container.
 2. In the left navigation under **Build**, click **Knowledge**
 
 You'll see the **Knowledge (Foundry IQ)** page with two tabs: Knowledge bases and Indexes.
+
+![Foundry IQ Knowledge page](./images/Foundry-IQ.png)
 
 ---
 
@@ -133,6 +146,8 @@ The first time you use Knowledge, you'll need to connect an AI Search resource:
 
 A "Setting up secure access" dialog will appear, showing that Foundry is granting the necessary RBAC roles (Search Service Contributor). Wait for it to complete.
 
+![Setting up secure access dialog](./images/foundry-iq-creating.png)
+
 > 💡 This creates an Azure AI Search resource and configures the managed identity permissions automatically.
 
 ![Knowledge page with Foundry IQ resource connected](./images/knowledge-base-created.png)
@@ -142,12 +157,17 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 ## Step 6: Create a Knowledge Base
 
 1. Click **Create a knowledge base**
+
+![Create knowledge base form](./images/create-kb.png)
+
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
    - **Description**: `Company information and policies for the chatbot agent`
    - **Chat completions model**: Select `gpt-5.5` (from your deployments)
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
+
+![Knowledge base configuration filled in](./images/kb-sources-section.png)
 
 ---
 
@@ -170,6 +190,8 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 > 4. Assign to **Managed identity** → Select your **AI Search** service
 > 5. Click **Review + assign**
 > 6. Wait 2-3 minutes, then retry
+>
+> ![Assigning Storage Blob Data Reader to AI Search](./images/storage-account-6.png)
 
 ---
 
@@ -178,6 +200,8 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 1. Once you see the knowledge source with **"Active"** status and **"2 files"** listed, click **Save knowledge base** at the top right
 
 You're now on the knowledge base detail page showing your configured `company-knowledge-base`.
+
+![Knowledge base saved](./images/kb-saved.png)
 
 ---
 
