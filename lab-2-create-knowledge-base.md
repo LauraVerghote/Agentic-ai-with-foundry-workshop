@@ -65,12 +65,14 @@ The first time you use Knowledge, you'll need to connect an AI Search resource:
 
 1. Click **Create new resource**
 2. In the dialog that appears:
-   - **Resource name**: Leave the auto-generated name (e.g., `company-assistant-srch-xxxxx`)
+   - **Resource name**: Leave the auto-generated name
    - **Subscription**: Select your subscription
    - **Resource group**: `rg-foundry-workshop-[yourname]`
-   - **Region**: Choose a region that has capacity (if you see a "region at capacity" warning, try another region like **West US 2** or **North Central US**)
+   - **Region**: Try selecting the same region as your Foundry resource (East US). If you see a "region at capacity" warning, select a different region that has availability (e.g., Sweden Central).
+   - **Pricing tier**: Basic
 3. Check the **acknowledgment checkbox** about additional costs
 4. Click **Create**
+![Create Foundry IQ resource page](./images/Foundry-IQ2.png)
 
 A "Setting up secure access" dialog will appear, showing that Foundry is granting the necessary RBAC roles (Search Service Contributor). Wait for it to complete.
 
