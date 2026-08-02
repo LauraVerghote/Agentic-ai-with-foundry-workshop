@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this lab, you'll create a **Foundry Agent** and connect it to your knowledge base. By the end, you'll have a working chatbot that can answer questions about your company using the documents you uploaded in Lab 2.
+In this lab, you'll create a **Foundry Agent** and connect it to your knowledge base. By the end, you'll have a working regulatory affairs assistant that can answer questions about NovaPharma's products and regulatory guidelines using the documents you uploaded in Lab 2.
 
 ---
 
@@ -57,13 +57,14 @@ You'll be taken to the **Playground** view of your new agent.
 The instructions define how your agent behaves. In the **Instructions** textarea, enter:
 
 ```text
-You are a helpful company assistant chatbot. You help employees find information about the company, its policies, and procedures.
+You are NovaPharma's regulatory affairs assistant. You help regulatory affairs team members find information about products, dosing guidelines, safety data, submission requirements, and compliance procedures.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
-- Be concise and professional
+- Be precise with dosing, contraindications, and regulatory timelines
 - If you don't know the answer or can't find it in the documents, say so honestly
-- Provide specific references to policies when applicable
+- When citing safety information, always mention the source document
+- Use proper pharmaceutical terminology
 ```
 
 ---
@@ -85,19 +86,19 @@ Your agent now has access to the company documents for grounded answers.
 1. Click **Save** at the top right (the version number will increment)
 2. In the **Chat** panel on the right, try these test questions:
 
-**Test 1: Company info**
+**Test 1: Product information**
 ```
-What is the name of the company and when was it founded?
-```
-
-**Test 2: Policy question**
-```
-What is the return policy?
+What are the approved indications for NovaRelief?
 ```
 
-**Test 3: Shipping options**
+**Test 2: Dosing question**
 ```
-What shipping options are available?
+What is the recommended dose of CardioShield for heart failure patients?
+```
+
+**Test 3: Regulatory timeline**
+```
+When is the next PSUR due for ImmunoBoost?
 ```
 
 The agent should answer using information from your knowledge base documents, with citations.
@@ -110,7 +111,7 @@ The agent should answer using information from your knowledge base documents, wi
 
 Look for these indicators of proper grounding:
 - **Citations**: The agent should reference specific documents
-- **Accuracy**: Answers should match what's in `company_info.txt` and `policies.txt`
+- **Accuracy**: Answers should match what's in `product_portfolio.txt` and `regulatory_guidelines.txt`
 - **Honesty**: If you ask something not in the documents, the agent should say it doesn't know
 
 ---

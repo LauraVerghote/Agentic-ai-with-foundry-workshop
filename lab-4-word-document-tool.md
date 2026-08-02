@@ -8,9 +8,9 @@
 
 ## Overview
 
-In this lab you'll enable the **Code Interpreter** tool on your agent. Code Interpreter allows the agent to write and execute Python code in a sandboxed environment, meaning your agent can now generate files, create charts, analyze data, and produce Word/PDF documents on demand.
+In this lab you'll enable the **Code Interpreter** tool on your agent. Code Interpreter allows the agent to write and execute Python code in a sandboxed environment, meaning your agent can now generate files, fill in templates, analyze data, and produce Word/PDF documents on demand.
 
-This demonstrates how Foundry Agents go beyond just answering questions: they can **take action** and produce tangible outputs.
+You'll also upload a **Product Summary Report template** that the agent will use to generate filled-in regulatory documents based on the knowledge base.
 
 ---
 
@@ -74,21 +74,23 @@ Alternatively, you can use the full tool dialog:
 Update your agent instructions to let it know about its new capability. Replace the current instructions with:
 
 ```text
-You are a helpful company assistant chatbot. You help employees find information about the company, its policies, and procedures.
+You are NovaPharma's regulatory affairs assistant. You help regulatory affairs team members find information about products, dosing guidelines, safety data, submission requirements, and compliance procedures.
 
 Capabilities:
-1. Knowledge Base: Answer questions using the connected company documents
-2. Document Generation: When asked to create documents (Word, PDF, reports), use the code interpreter to generate them
+1. Knowledge Base: Answer questions using the connected product portfolio and regulatory guidelines
+2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it. A Product Summary Report template is available as a reference for the standard format.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
-- Be concise and professional
+- Be precise with dosing, contraindications, and regulatory timelines
 - If you don't know the answer or can't find it in the documents, say so honestly
-- Provide specific references to policies when applicable
+- When citing safety information, always mention the source document
+- Use proper pharmaceutical terminology
 
 When creating documents:
 - Use python-docx for Word documents
-- Include proper formatting (headings, bullet points, tables where appropriate)
+- Follow the Product Summary Report template format when generating product summaries
+- Include all required regulatory fields (indication, dosing, contraindications, safety data, storage)
 - Always offer the document as a download
 ```
 
@@ -100,35 +102,51 @@ Click **Save** in the top right. The version number will increment.
 
 ---
 
-## Step 5: Test Document Generation
+## Step 5: Upload the Template
+
+Before testing, upload the product summary template so the agent knows the expected format:
+
+1. In the **Chat** panel, click the **attach** button (paperclip icon)
+2. Upload the file `data/product_summary_template.docx` from this repository
+3. Tell the agent:
+
+```
+This is our standard Product Summary Report template. Please use this format when I ask you to generate product summaries.
+```
+
+The agent will analyze the template structure and use it as a reference.
+
+---
+
+## Step 6: Test Document Generation
 
 In the **Chat** panel on the right, try these prompts:
 
-**Test 1: Simple document**
+**Test 1: Fill in a product summary**
 ```
-Create a Word document with a summary of our company's return policy.
+Fill in a Product Summary Report for NovaRelief using the information from our knowledge base.
 ```
 
 The agent should:
-1. Look up the return policy in the knowledge base
-2. Write Python code using `python-docx` to create a .docx file
-3. Return a downloadable link to the document
+1. Look up NovaRelief details in the knowledge base
+2. Write Python code using `python-docx` to create a filled-in template
+3. Return a downloadable Product Summary Report with all fields completed
 
-**Test 2: Formatted letter**
+**Test 2: Different product**
 ```
-Generate a Word document with a welcome letter for a new employee named Sarah Johnson starting on August 15, 2026 in the Engineering department. Include our company name and key policies they should know about.
+Generate a completed Product Summary Report for CardioShield.
 ```
 
-**Test 3: Data table**
+**Test 3: Specific section**
 ```
-Create a Word document with a table listing our shipping options and their details.
+Create a Word document summarizing the adverse reactions and drug interactions for all three NovaPharma products in a comparison table.
 ```
 
 > 💡 After each response, you should see a file attachment that you can download. Click on it to verify the document was generated correctly.
 
 ---
 
-## Step 6: Review the Trace
+## Step 7: Review the Trace
 
 1. Click on the **Traces** tab at the top of the agent view
 2. Find the most recent trace
@@ -148,10 +166,10 @@ In this lab, you:
 
 - ✅ Enabled the **Code Interpreter** built-in tool
 - ✅ Updated agent instructions to include document generation
-- ✅ Tested document creation with multiple prompts
-- ✅ Verified the agent can produce downloadable Word documents
+- ✅ Tested document creation with pharma-specific prompts
+- ✅ Verified the agent can produce downloadable product summary reports
 
-Your agent can now both answer questions AND produce tangible outputs!
+Your agent can now both answer regulatory questions AND produce filled-in document templates!
 
 ---
 

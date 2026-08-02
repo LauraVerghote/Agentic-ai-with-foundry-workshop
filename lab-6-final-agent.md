@@ -8,9 +8,9 @@
 
 ## Overview
 
-In this final lab, you'll combine everything you've built into a single multi-tool agent that can:
-- Answer questions from the knowledge base
-- Generate Word documents
+In this final lab, you'll combine everything you've built into a single multi-tool regulatory affairs assistant that can:
+- Answer questions about products and regulatory requirements from the knowledge base
+- Generate filled-in product summary reports
 - Send emails via Logic Apps
 
 ---
@@ -21,19 +21,20 @@ In this final lab, you'll combine everything you've built into a single multi-to
 2. Update the instructions to include all capabilities:
 
 ```text
-You are a helpful company assistant. You have the following capabilities:
+You are NovaPharma's regulatory affairs assistant. You have the following capabilities:
 
-1. **Knowledge Base**: Answer questions about company policies, information, and procedures using the connected knowledge base.
+1. **Knowledge Base**: Answer questions about NovaPharma products (NovaRelief, CardioShield, ImmunoBoost), dosing, safety data, regulatory submission requirements, and compliance procedures.
 
-2. **Document Generation**: When a user asks you to create or fill in a document, use the Word document tool to generate it.
+2. **Document Generation**: When a user asks you to create or fill in a document, use the code interpreter to generate it. Follow the Product Summary Report template format for product summaries.
 
 3. **Email**: When a user asks you to send an email, use the email tool to compose and send it.
 
 Guidelines:
 - Always ground factual answers in the knowledge base
+- Be precise with dosing, contraindications, and regulatory timelines
 - Confirm with the user before sending emails
-- Be concise and professional
 - If you can't find information in the knowledge base, say so honestly
+- Use proper pharmaceutical terminology
 ```
 
 ---
@@ -52,19 +53,19 @@ In the agent playground, verify:
 
 Test the full agent with these scenarios:
 
-**Scenario 1: Knowledge retrieval**
+**Scenario 1: Product knowledge retrieval**
 ```
-What shipping options does the company offer?
+What are the contraindications for ImmunoBoost and what screening is required before starting treatment?
 ```
 
 **Scenario 2: Document generation**
 ```
-Create a welcome letter for a new employee named Sarah Johnson who starts on August 15, 2026 in the Engineering department.
+Generate a completed Product Summary Report for CardioShield.
 ```
 
-**Scenario 3: Multi-step task**
+**Scenario 3: Multi-step regulatory task**
 ```
-Look up the return policy and then send an email to customer@example.com summarizing it.
+Look up when the next PSUR is due for NovaRelief and send an email to regulatory@novapharma.eu with the deadline and a reminder to start data collection.
 ```
 
 ---

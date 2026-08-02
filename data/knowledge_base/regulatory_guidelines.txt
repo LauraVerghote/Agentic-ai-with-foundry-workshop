@@ -1,0 +1,188 @@
+NovaPharma Regulatory and Compliance Guidelines
+=================================================
+
+Document Control
+----------------
+Document ID: REG-SOP-2024-001
+Version: 3.2
+Effective Date: January 15, 2024
+Review Date: January 15, 2025
+Author: Regulatory Affairs Department
+Classification: Internal Use Only
+
+---
+
+1. Regulatory Submission Requirements
+--------------------------------------
+
+1.1 Variation Submissions (Type IA, IB, Type II)
+
+Type IA Variations (Minor, no prior approval needed):
+- Notification within 12 months of implementation
+- Examples: Change in name/address of MAH, minor change to product information text
+- Required documents: Application form, updated SmPC/PIL sections, cover letter
+- Fee: EUR 2,500 per variation
+
+Type IB Variations (Minor, notify and implement):
+- Submit notification, implement after 30 days if no objection
+- Examples: Minor formulation change, tightening of specification limits
+- Required documents: Application form, justification, updated specifications, stability data if applicable
+- Fee: EUR 4,000 per variation
+
+Type II Variations (Major):
+- Requires prior approval before implementation
+- Assessment timeline: 60 days (standard), 90 days for complex safety changes
+- Examples: New indication, change in dosing, significant formulation change
+- Required documents: Full variation dossier including updated Module 2 summaries, clinical/non-clinical data as needed
+- Fee: EUR 15,000 per variation
+
+1.2 Periodic Safety Update Reports (PSURs)
+
+PSUR submission frequency by product:
+- NovaRelief: Every 12 months (next due: March 15, 2025)
+- CardioShield: Every 12 months (next due: June 22, 2025)
+- ImmunoBoost: Every 6 months (next due: May 8, 2025)
+
+PSUR content requirements:
+- Worldwide exposure data
+- Summary of safety concerns from the Risk Management Plan
+- Signal detection and evaluation
+- Benefit-risk assessment
+- Proposed risk minimization measures
+
+PSUR preparation timeline:
+- Data lock point: As per EU birth date
+- Draft to Safety Committee: 30 days after data lock
+- Internal review: 15 days
+- Submission deadline: 70 days after data lock point (for EU single assessment)
+
+1.3 Risk Management Plans (RMPs)
+
+All products must maintain current RMPs. RMP updates required when:
+- New safety concern identified
+- Change in benefit-risk profile
+- New risk minimization measure proposed
+- PSUR assessment recommends update
+- Submission of Type II variation affecting safety
+
+RMP structure follows EU GVP Module V format:
+- Part I: Product overview
+- Part II: Safety specification (non-clinical, clinical trial, post-marketing)
+- Part III: Pharmacovigilance plan
+- Part IV: Plans for post-authorization efficacy studies
+- Part V: Risk minimization measures
+- Part VI: Summary of the RMP
+- Part VII: Annexes
+
+---
+
+2. Pharmacovigilance Requirements
+-----------------------------------
+
+2.1 Adverse Event Reporting Timelines
+
+Individual Case Safety Reports (ICSRs):
+- Serious, unexpected adverse reactions: 15 calendar days from awareness
+- Fatal or life-threatening unexpected reactions: 7 calendar days initial report, 15 days for follow-up
+- Non-serious adverse reactions: 90 calendar days
+- Reports from literature: 15 days for serious, 90 days for non-serious
+
+2.2 Signal Detection
+
+Routine signal detection activities:
+- Review of EudraVigilance data: Monthly
+- Disproportionality analysis: Quarterly
+- Literature screening (PubMed, Embase): Weekly
+- Social media monitoring: Not required per current SOP but under evaluation
+
+Signal validation criteria:
+- New adverse reaction not in current SmPC
+- Increase in severity or frequency of known reaction
+- New at-risk population identified
+- New drug interaction identified
+
+2.3 Safety Communication
+
+Dear Healthcare Professional Communications (DHPCs):
+- Required when urgent safety information must be communicated
+- Approval by national competent authority before distribution
+- Distribution within 24 hours of approval
+- Channels: Direct mail, email to registered HCPs, publication on company website
+
+---
+
+3. Quality and Manufacturing Compliance
+-----------------------------------------
+
+3.1 Good Manufacturing Practice (GMP) Requirements
+
+Annual product quality reviews must include:
+- Batch analysis trending (all critical quality attributes)
+- Stability data review
+- Deviation and CAPA summary
+- Complaint trending
+- Change control summary
+- Supplier qualification status
+
+3.2 Stability Testing Program
+
+Long-term stability: 25 degrees C / 60% RH, testing at 0, 3, 6, 9, 12, 18, 24, 36 months
+Accelerated stability: 40 degrees C / 75% RH, testing at 0, 1, 3, 6 months
+Photostability: Per ICH Q1B guideline
+
+Stability commitments per product:
+- NovaRelief: 3 production batches per year (ongoing)
+- CardioShield: 3 production batches per year (ongoing)
+- ImmunoBoost: 1 batch per year (post-approval commitment until 2027)
+
+3.3 Batch Release
+
+Batch release checklist:
+- Certificate of Analysis (CoA) review and approval
+- Batch manufacturing record review
+- Deviation assessment (no open critical deviations)
+- Stability trending within specification
+- Qualified Person (QP) declaration
+- Artwork and labeling verification
+
+---
+
+4. Product Information Updates
+-------------------------------
+
+4.1 Summary of Product Characteristics (SmPC)
+
+SmPC updates must be submitted when:
+- New clinical data affects prescribing information
+- PSUR assessment identifies new safety information
+- Signal assessment results in labeling change
+- Regulatory authority request
+
+SmPC change process:
+1. Identify need for change (signal, PSUR, clinical study)
+2. Draft proposed text changes (tracked changes format)
+3. Medical review by Chief Medical Officer
+4. Regulatory assessment of variation type required
+5. Legal review of patient information leaflet changes
+6. Submit variation to EMA or national authority
+7. Implement approved changes within 6 months of approval
+
+4.2 Package Leaflet (PIL) Requirements
+
+Patient information leaflets must:
+- Be written at a reading level accessible to general public
+- Include all mandatory sections per EU legislation
+- Be user-tested with target patient population
+- Be available in all official languages of member states where marketed
+- Be updated simultaneously with SmPC changes
+
+---
+
+5. Regulatory Contact Information
+-----------------------------------
+
+European Medicines Agency (EMA): submissions@ema.europa.eu
+Belgian Federal Agency for Medicines (FAMHP): registration@famhp.be
+NovaPharma Regulatory Affairs Lead: Dr. Sarah Vermeersch, s.vermeersch@novapharma.eu
+NovaPharma QP (Qualified Person): Dr. Marc Dubois, m.dubois@novapharma.eu
+NovaPharma Pharmacovigilance (QPPV): Dr. Elena Petrova, e.petrova@novapharma.eu

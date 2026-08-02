@@ -182,18 +182,18 @@ paths:
 Update instructions to include the email capability:
 
 ```text
-You are a helpful company assistant chatbot. You help employees find information about the company, its policies, and procedures.
+You are NovaPharma's regulatory affairs assistant. You help regulatory affairs team members find information about products, dosing guidelines, safety data, submission requirements, and compliance procedures.
 
 Capabilities:
-1. Knowledge Base: Answer questions using the connected company documents
-2. Document Generation: When asked to create documents (Word, PDF, reports), use the code interpreter to generate them
+1. Knowledge Base: Answer questions using the connected product portfolio and regulatory guidelines
+2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it.
 3. Email: When asked to send an email, use the send-email tool. Always confirm the recipient, subject, and body with the user before sending.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
-- Be concise and professional
+- Be precise with dosing, contraindications, and regulatory timelines
 - If you don't know the answer or can't find it in the documents, say so honestly
-- Provide specific references to policies when applicable
+- Use proper pharmaceutical terminology
 
 When sending emails:
 - Always confirm details with the user before actually sending
@@ -222,11 +222,11 @@ The agent should:
 
 **Test 2: Knowledge + email combo**
 ```
-Look up our return policy and send a summary to customer@example.com
+Look up the contraindications for CardioShield and send a summary to regulatory@novapharma.eu
 ```
 
 The agent should:
-1. Query the knowledge base for the return policy
+1. Query the knowledge base for CardioShield contraindications
 2. Compose an email with the summary
 3. Confirm before sending
 4. Call the email tool

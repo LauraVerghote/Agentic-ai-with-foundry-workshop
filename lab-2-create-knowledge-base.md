@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. You'll upload documents directly through the portal and Foundry IQ will handle storage, indexing, and vectorization automatically.
+In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. You'll upload NovaPharma's product portfolio and regulatory guidelines, and Foundry IQ will handle storage, indexing, and vectorization automatically.
 
 ---
 
@@ -72,6 +72,7 @@ The first time you use Knowledge, you'll need to connect an AI Search resource:
    - **Pricing tier**: Basic
 3. Check the **acknowledgment checkbox** about additional costs
 4. Click **Create**
+
 ![Create Foundry IQ resource page](./images/Foundry-IQ2.png)
 
 A "Setting up secure access" dialog will appear, showing that Foundry is granting the necessary RBAC roles (Search Service Contributor). Wait for it to complete.
@@ -79,8 +80,6 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 ![Setting up secure access dialog](./images/foundry-iq-creating.png)
 
 > 💡 This creates an Azure AI Search resource and configures the managed identity permissions automatically.
-
-![Knowledge page with Foundry IQ resource connected](./images/knowledge-base-created.png)
 
 ---
 
@@ -92,12 +91,13 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
-   - **Description**: `Company information and policies for the chatbot agent`
+   - **Description**: `NovaPharma product portfolio and regulatory guidelines`
    - **Chat completions model**: Select `gpt-5.5` (from your deployments)
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
 
 ![Knowledge base configuration filled in](./images/kb-sources-section.png)
+![Knowledge page with Foundry IQ resource connected](./images/knowledge-base-created.png)
 
 ---
 
@@ -109,8 +109,8 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
    - **Name**: `company-docs`
    - **Embedding model**: `text-embedding-3-small` should be auto-selected
 3. In the **Drop files here or browse** area, upload both files from the `data/knowledge_base/` folder in this repository:
-   - `company_info.txt`
-   - `policies.txt`
+   - `product_portfolio.txt`
+   - `regulatory_guidelines.txt`
 4. Click **Create**
 
 > ⚠️ **If upload fails**: Wait 2-3 minutes for the managed identity permissions to propagate, then click **Retry**. The search service needs time for its role assignments to take effect.
@@ -133,7 +133,7 @@ In this lab, you:
 
 - ✅ Connected a Foundry IQ resource (Azure AI Search) with automated RBAC
 - ✅ Created a knowledge base with `gpt-5.5` for reasoning
-- ✅ Uploaded documents directly through the portal
+- ✅ Uploaded product portfolio and regulatory guidelines through the portal
 - ✅ Files are automatically chunked, embedded with `text-embedding-3-small`, and indexed
 
 Your knowledge base is now ready to be connected to an agent in the next lab.
