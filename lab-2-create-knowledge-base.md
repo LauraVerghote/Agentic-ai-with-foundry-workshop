@@ -101,8 +101,6 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
      ```
 3. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
 
-![Knowledge base configuration filled in](./images/kb-sources-section.png)
-
 ![Create a new knowledge base page](./images/knowledge-base-created.png)
 
 ---
