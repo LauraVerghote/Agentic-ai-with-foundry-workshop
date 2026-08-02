@@ -100,14 +100,17 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
      This knowledge base contains pharmaceutical product information and regulatory guidelines for NovaPharma. When retrieving information, prioritize precise dosing, contraindications, and safety data. Distinguish clearly between the three products: NovaRelief (pain/NSAID), CardioShield (cardiovascular/ARB), and ImmunoBoost (immunology/biologic). For regulatory questions, include relevant timelines and submission requirements.
      ```
 3. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
+
 ![Knowledge base configuration filled in](./images/kb-sources-section.png)
-![Knowledge page with Foundry IQ resource connected](./images/knowledge-base-created.png)
+
+![Create a new knowledge base page](./images/knowledge-base-created.png)
 
 ---
 
 ## Step 4: Upload Files as a Knowledge Source
 
-1. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
+1. In the **Knowledge sources (Foundry IQ)** section on the same page, click **Upload files**.
+2. Download the 2 files in the folder data -> knowledge_base
 2. A "Create a knowledge source" dialog appears:
    - **Source type**: File (Preview)
    - **Name**: `company-docs`
