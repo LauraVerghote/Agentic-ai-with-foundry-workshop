@@ -35,10 +35,9 @@ By the end of this workshop you will have:
 | [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Upload product and regulatory documents to Foundry IQ | 15-20 min |
 | [Lab 3: Create Your First Agent](./lab-3-create-agent.md) | Build a regulatory affairs assistant grounded in your knowledge base | 15-20 min |
 | [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Enable a tool that fills in product summary templates | 20-30 min |
-| [Lab 5: Create an Email Action with Logic Apps](./lab-5-email-logic-app.md) | Create a Logic App that sends emails | 15-20 min |
-| [Lab 6: Final Agent: Combine All Tools](./lab-6-final-agent.md) | Wire everything together and test end-to-end | 15-20 min |
+| [Lab 5: Create an Email Action with Logic Apps](./lab-5-email-logic-app.md) | Create a Logic App that sends emails and attach generated documents | 20-30 min |
 
-**Total estimated time**: 95-130 minutes
+**Total estimated time**: 85-120 minutes
 
 ## Additional Resources
 

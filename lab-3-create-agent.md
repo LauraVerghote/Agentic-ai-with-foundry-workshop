@@ -40,8 +40,7 @@ The agent playground lets you:
 
 ![Create agent](./images/agents-page.png)
 
-4. In the dialog:
-   - **Agent name**: `regulatory-affairs-agent`
+4. In the dialog add  **Agent name**: `regulatory-affairs-agent`
 5. Click **Create and open playground**
 
 ![Agent create](./images/agent-create.png)
@@ -71,6 +70,7 @@ When answering questions:
 
 4. For **Connection**, choose `company-assistant-src-xxxx`, for **Knowledge base**, pick `company-knowledge-base` from the list
 5. Click **Connect**
+
 ![Agent create](./images/agent-add-foundryIQ.png)
 
 
@@ -91,7 +91,7 @@ Before testing, connect Application Insights so you can view detailed traces of 
 
 3. On the App. Insights resource tab, select **Create new resource** in the dropdown to create a new Application Insights resource (or connect an existing one). 
 4. Leave the default naming and click **Create**
-4. Follow the wizard and click **Connect**
+5. Follow the wizard and click **Connect**
 
 Once connected, traces are automatically captured for all agent interactions. You can return to this tab anytime to see detailed execution logs.
 
@@ -107,6 +107,9 @@ Once connected, traces are automatically captured for all agent interactions. Yo
 ```
 What are the approved indications for NovaRelief?
 ```
+
+The result should look as follows: 
+
 ![Test the first version of our agent](./images/test-agent-0.png)
 
 **Test 2: Dosing question**

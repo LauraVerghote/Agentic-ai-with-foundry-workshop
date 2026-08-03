@@ -1,6 +1,6 @@
 # Lab 5: Create a Custom API Tool with Logic Apps
 
-[← Back to Workshop Overview](./README.md) | [← Previous: Lab 4](./lab-4-word-document-tool.md) | [Next: Lab 6 →](./lab-6-final-agent.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 4](./lab-4-word-document-tool.md)
 
 ---
 
@@ -57,7 +57,7 @@ The agent determines when to call the tool based on the user's request, formats 
    - **Workflow Type**: Stateful
 6. Click **Review + create** → **Create**
 
-![Test the first version of our agent](./images/logic-app-1.png)
+![Create logic app](./images/logic-app-1.png)
 
 7. Once deployed, click **Go to resource**
 
@@ -66,8 +66,10 @@ The agent determines when to call the tool based on the user's request, formats 
 ## Step 2: Design the Workflow
 
 1. In the Logic App, click **Logic app designer** (left menu under Development Tools)
-2. You'll see the designer with a trigger step. Select **When a HTTP request is received**
-3. In the **Request Body JSON Schema**, paste:
+2. You'll see the designer with a trigger step. Click **Add a trigger**
+3. Select **Request** Under **Built-in-tools**.
+4. Then select **When an HTTP request is received**.
+In the **Request Body JSON Schema**, paste:
 
 ```json
 {
@@ -84,25 +86,35 @@ The agent determines when to call the tool based on the user's request, formats 
     "body": {
       "type": "string",
       "description": "Email body content"
+    },
+    "attachment_name": {
+      "type": "string",
+      "description": "Filename of the attachment"
+    },
+    "attachment_content": {
+      "type": "string",
+      "description": "Base64-encoded file content"
     }
   },
   "required": ["to", "subject", "body"]
 }
 ```
 
-4. Click **+ New step**
+4. In the visual workflow, click **+** → **Add an action**
 5. Search for **Office 365 Outlook** → Select **Send an email (V2)**
 6. Sign in with your Microsoft 365 account when prompted
 7. Configure the email action:
-   - **To**: Click in the field → select `to` from Dynamic content
-   - **Subject**: Select `subject` from Dynamic content
-   - **Body**: Select `body` from Dynamic content
-8. Click **+ New step** → Search for **Response** → Select **Response**
+   - **To**: Click in the **To** field, then click the **lightning bolt** icon (⚡) that appears. Under the HTTP trigger, select **to**
+   - **Subject**: Click in the **Subject** field, click the lightning bolt icon, and select **subject**
+   - **Body**: Click in the **Body** field, click the lightning bolt icon, and select **body**
+   - **Attachments**: Under Advanced parameters, click **Show all**, then in the **Attachments Name** field select `attachment_name` (lightning bolt), and in **Attachments Content** select `attachment_content` (lightning bolt)
+8. In the visual workflow, click **+** → **Add an action** → Search for **Response** → Select **Response**
 9. Configure the response:
    - **Status Code**: `200`
    - **Body**: `{"status": "Email sent successfully"}`
 10. Click **Save**
 
+![Logic app workflow](./images/logic-app-2.png)
 ---
 
 ## Step 3: Get the HTTP URL
@@ -112,75 +124,95 @@ After saving, the HTTP trigger will show a **HTTP POST URL** at the top of the t
 1. Click on the "When a HTTP request is received" step
 2. Copy the **HTTP POST URL**. You'll need this for the next step
 
+![Logic app workflow](./images/logic-app-3.png)
+
 > ⚠️ **Keep this URL secure**. It contains a SAS token that allows anyone with it to trigger your Logic App.
 
 ---
 
 ## Step 4: Create the Tool Definition
 
-Now register this Logic App as a custom tool in Foundry:
+Now register this Logic App as a custom tool directly from your agent:
 
 1. Go back to the **Microsoft Foundry** portal
-2. Navigate to **Build** > **Tools** (left navigation)
-3. Click **+ New tool**
-4. Select **Custom tool** (or **OpenAPI**)
-5. Fill in the details:
-   - **Name**: `send-email`
+2. Navigate to **Build** > **Agents** > `regulatory-affairs-agent`
+3. In the **Tools** section, click **Add** > **Custom tool** > **OpenAPI**
+4. Fill in the details:
+   - **Name**: `SendEmail`
    - **Description**: `Sends an email to a specified recipient with a subject and body. Use this when the user asks to send, compose, or draft an email.`
-6. For the tool definition, provide the OpenAPI spec:
+   - **Authentication method**: **Anonymous**
+5. In the **OpenAPI 3.0+ schema** field, paste the following JSON. Replace the `url` and path with your own Logic App URL from Step 3:
 
-```yaml
-openapi: 3.0.0
-info:
-  title: Send Email Tool
-  version: 1.0.0
-paths:
-  /send:
-    post:
-      operationId: sendEmail
-      summary: Send an email to a recipient
-      description: Sends an email with the specified recipient, subject, and body
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                to:
-                  type: string
-                  description: Email recipient address
-                subject:
-                  type: string
-                  description: Email subject line
-                body:
-                  type: string
-                  description: Email body content in plain text or HTML
-              required:
-                - to
-                - subject
-                - body
-      responses:
-        '200':
-          description: Email sent successfully
+> 💡 To split your URL: everything before `/invoke` goes in `servers.url`, and `/invoke?...` (including all query parameters) becomes the path key.
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Send Email Tool",
+    "description": "Sends an email via Logic App",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://prod-XX.eastus.logic.azure.com:443/workflows/YOUR_WORKFLOW_ID/triggers/When_an_HTTP_request_is_received/paths"
+    }
+  ],
+  "paths": {
+    "/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=YOUR_SIG_HERE": {
+      "post": {
+        "operationId": "sendEmail",
+        "summary": "Send an email to a recipient",
+        "description": "Sends an email with the specified recipient, subject, and body",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "string",
+                    "description": "Email recipient address"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "Email subject line"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "Email body content"
+                  },
+                  "attachment_name": {
+                    "type": "string",
+                    "description": "Filename for the attachment (e.g. report.docx)"
+                  },
+                  "attachment_content": {
+                    "type": "string",
+                    "description": "Base64-encoded file content for the attachment"
+                  }
+                },
+                "required": ["to", "subject", "body"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent successfully"
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
-7. Set the **Server URL** to your Logic App HTTP POST URL (without the query parameters; the full URL acts as the endpoint)
-8. Click **Save**
+6. Click **Create tool**
 
 ---
 
-## Step 5: Connect the Tool to Your Agent
-
-1. Go to **Build** > **Agents** > `regulatory-affairs-agent`
-2. In the **Tools** section, click **Add** → **Add tools**
-3. Switch to the **Custom** tab (or find your tool in the list)
-4. Select `send-email`
-5. Click **Add tool**
-
----
-
-## Step 6: Update Agent Instructions
+## Step 5: Update Agent Instructions
 
 Update instructions to include the email capability:
 
@@ -189,8 +221,8 @@ You are NovaPharma's regulatory affairs assistant. You help regulatory affairs t
 
 Capabilities:
 1. Knowledge Base: Answer questions using the connected product portfolio and regulatory guidelines
-2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it.
-3. Email: When asked to send an email, use the send-email tool. Always confirm the recipient, subject, and body with the user before sending.
+2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it. A Product Summary Report template is available as a reference for the standard format.
+3. Email: When asked to send an email, use the SendEmail tool. Always confirm the recipient, subject, and body with the user before sending. You can attach documents generated by the code interpreter.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
@@ -202,17 +234,18 @@ When sending emails:
 - Always confirm details with the user before actually sending
 - Format the email body professionally
 - Include relevant information from the knowledge base when applicable
+- When attaching a generated document, read the file as base64 and include it as attachment_content with the appropriate attachment_name
 ```
 
-Click **Save**.
+Click **Save** on the top right.
 
 ---
 
-## Step 7: Test the Email Tool
+## Step 6: Test the Email Tool
 
 In the chat panel, try:
 
-**Test 1: Direct email request**
+**Test 1: Direct email request** - replace with a real email address
 ```
 Send an email to test@example.com with the subject "Hello from the workshop" and body "This is a test email from our Foundry agent!"
 ```
@@ -223,7 +256,7 @@ The agent should:
 3. Call the `send-email` tool
 4. Report success or failure
 
-**Test 2: Knowledge + email combo**
+**Test 2: Knowledge + email combo** - replace with a real email address
 ```
 Look up the contraindications for CardioShield and send a summary to regulatory@novapharma.eu
 ```
@@ -234,6 +267,18 @@ The agent should:
 3. Confirm before sending
 4. Call the email tool
 
+**Test 3: Generate document and email it** - replace with a real email address
+```
+Generate a product summary report for NovaRelief and email it to regulatory@novapharma.eu
+```
+
+The agent should:
+1. Use Code Interpreter to generate the .docx document
+2. Read the file content as base64
+3. Ask you to confirm before sending
+4. Call the SendEmail tool with the attachment_name and attachment_content fields
+5. You should receive the email with the .docx attached
+
 ---
 
 ## ✅ What You Accomplished
@@ -241,10 +286,11 @@ The agent should:
 In this lab, you:
 
 - ✅ Created an Azure Logic App with an HTTP trigger
-- ✅ Configured an Office 365 email action
+- ✅ Configured an Office 365 email action with attachment support
 - ✅ Registered the Logic App as a custom tool in Foundry
 - ✅ Connected the tool to your agent
 - ✅ Tested agent-triggered email sending
+- ✅ Tested generating a document and emailing it as an attachment
 
 Your agent can now send emails on behalf of the user, a real-world action triggered by natural language!
 
@@ -268,4 +314,4 @@ Your agent can now send emails on behalf of the user, a real-world action trigge
 
 ---
 
-[← Back to Workshop Overview](./README.md) | [← Previous: Lab 4](./lab-4-word-document-tool.md) | [Next: Lab 6 →](./lab-6-final-agent.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 4](./lab-4-word-document-tool.md)
