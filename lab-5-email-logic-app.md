@@ -92,11 +92,11 @@ In the **Request Body JSON Schema**, paste:
     },
     "attachment_name": {
       "type": "string",
-      "description": "Filename including extension (e.g. report.docx)"
+      "description": "Filename including extension (e.g. report.doc)"
     },
     "attachment_content": {
       "type": "string",
-      "description": "Plain text content of the attachment document"
+      "description": "HTML-formatted document content"
     }
   },
   "required": ["to", "subject", "body"]
@@ -164,7 +164,7 @@ Now register this Logic App as a custom tool directly from your agent:
   "openapi": "3.0.0",
   "info": {
     "title": "Send Email Tool",
-    "description": "Sends an email via Logic App",
+    "description": "Sends an email via Logic App with optional Word document attachment",
     "version": "1.0.0"
   },
   "servers": [
@@ -199,11 +199,11 @@ Now register this Logic App as a custom tool directly from your agent:
                   },
                   "attachment_name": {
                     "type": "string",
-                    "description": "Filename for the attachment (e.g. Product_Summary_NovaRelief.txt)"
+                    "description": "Filename for the attachment ending in .doc (e.g. Product_Summary_NovaRelief.doc)"
                   },
                   "attachment_content": {
                     "type": "string",
-                    "description": "The plain text content of the attachment document. Do NOT base64 encode it."
+                    "description": "HTML-formatted content for the Word document. Use proper HTML tags (html, head, body, h1, h2, p, table, etc). Do NOT base64 encode. The server handles encoding."
                   }
                 },
                 "required": ["to", "subject", "body"]
@@ -235,9 +235,9 @@ You are NovaPharma's regulatory affairs assistant. You help regulatory affairs t
 
 Capabilities:
 1. Knowledge Base: Answer questions using the connected product portfolio and regulatory guidelines
-2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it as formatted plain text. A Product Summary Report template is available as a reference for the standard format.
+2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it. A Product Summary Report template is available as a reference for the standard format.
 3. Email: When asked to send an email, use the SendEmail tool. Always confirm the recipient, subject, and body with the user before sending.
-4. Email with attachment: When asked to email a generated document, generate the document content as plain text using code interpreter, then call SendEmail with attachment_name (e.g. "Product_Summary_NovaRelief.txt") and attachment_content (the plain text string). Do NOT base64 encode the attachment_content.
+4. Email with attachment: When asked to email a generated document as a Word file, use code interpreter to generate the document content as a well-formatted HTML string (with <html>, <head>, <body>, <h1>, <h2>, <p>, <table> tags as appropriate). Then call SendEmail with attachment_name ending in .doc (e.g. "Product_Summary_NovaRelief.doc") and attachment_content set to the HTML string. Do NOT base64 encode it. The server handles encoding, and Word opens HTML-based .doc files natively.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
@@ -283,16 +283,16 @@ The agent should:
 
 **Test 3: Generate document and email it** - replace with a real email address
 ```
-Generate a product summary report for NovaRelief and email it as a text document to regulatory@novapharma.eu
+Generate a product summary report for NovaRelief and email it as a Word document to regulatory@novapharma.eu
 ```
 
 The agent should:
-1. Use Code Interpreter to generate the report as plain text
+1. Use Code Interpreter to generate the report as an HTML document
 2. Ask you to confirm before sending
-3. Call the SendEmail tool with `attachment_name` (e.g. "Product_Summary_NovaRelief.txt") and `attachment_content` (the plain text content)
-4. You should receive the email with the .txt file attached
+3. Call the SendEmail tool with `attachment_name` (e.g. "Product_Summary_NovaRelief.doc") and `attachment_content` (the HTML string)
+4. You should receive the email with a .doc file attached that opens in Microsoft Word
 
-> 💡 The Logic App handles the base64 encoding server-side, so the agent only needs to send plain text. This avoids payload size limits in the tool call.
+> 💡 The agent sends HTML content with a `.doc` extension. Word opens these files natively. The Logic App handles base64 encoding server-side, so the agent only needs to send the HTML string. This avoids payload size limits that would occur with binary .docx files.
 
 ---
 
