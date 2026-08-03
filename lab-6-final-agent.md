@@ -17,7 +17,7 @@ In this final lab, you'll combine everything you've built into a single multi-to
 
 ## Step 1: Update Agent Instructions
 
-1. Open your `company-chatbot` agent in the **Agents** section
+1. Open your `regulatory-affairs-agent` agent in the **Agents** section
 2. Update the instructions to include all capabilities:
 
 ```text

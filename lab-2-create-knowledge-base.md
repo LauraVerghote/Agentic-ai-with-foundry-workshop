@@ -101,22 +101,25 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
      ```
 3. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
 
-![Create a new knowledge base page](./images/knowledge-base-created.png)
+![Create a new knowledge base page](./images/knowledge-base-create.png)
 
 ---
 
 ## Step 4: Upload Files as a Knowledge Source
 
-1. In the **Knowledge sources (Foundry IQ)** section on the same page, click **Upload files**.
-2. Download the 2 files in the folder data -> knowledge_base
-2. A "Create a knowledge source" dialog appears:
-   - **Source type**: File (Preview)
-   - **Name**: `company-docs`
-   - **Embedding model**: `text-embedding-3-small` should be auto-selected
-3. In the **Drop files here or browse** area, upload both files from the `data/knowledge_base/` folder in this repository:
+1. Download the 2 files from this repo in the folder `data/knowledge_base/`:
    - `product_portfolio.txt`
    - `regulatory_guidelines.txt`
-4. Click **Create**
+2. In the **Knowledge sources (Foundry IQ)** section on the same page, click **Upload files**.
+3. Select both `.txt` files from your downloads and open them.
+4. A "Create a knowledge source" dialog appears:
+   - **Name**: `novapharma-docs`
+   - **Description**: `NovaPharma product portfolio and regulatory compliance guidelines`
+   - **Embedding model**: `text-embedding-3-small` should be auto-selected
+5. Under **Files to upload**, you should see both files listed with their sizes
+6. Click **Create**
+
+![Create a new knowledge source page](./images/knowledge-source-create.png)
 
 > ⚠️ **If upload fails**: Wait 2-3 minutes for the managed identity permissions to propagate, then click **Retry**. The search service needs time for its role assignments to take effect.
 
@@ -124,11 +127,11 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 ## Step 5: Save the Knowledge Base
 
-1. Once you see the knowledge source with **"Active"** status and **"2 files"** listed, click **Save knowledge base** at the top right
+1. Once you see the knowledge source with **"Active"** status, click **Save knowledge base** at the top right
 
 You're now on the knowledge base detail page showing your configured `company-knowledge-base`.
 
-![Knowledge base saved](./images/kb-saved.png)
+
 
 ---
 
@@ -154,6 +157,15 @@ Your knowledge base is now ready to be connected to an agent in the next lab.
 ---
 
 ## 🔧 Troubleshooting
+
+### "Failed to list key. disableLocalAuth is set to be true" when uploading files
+
+If you see a 400 error when uploading files, your AI Search resource may have API key authentication disabled:
+
+1. Go to the **Azure Portal** > Your AI Search resource > **Settings** > **Keys**
+2. Under **API Access control**, select **Both** (allows both API keys and role-based access)
+3. Click **Save**
+4. Go back to the Foundry portal and retry the file upload
 
 ### 403 Forbidden when connecting knowledge base to agent
 

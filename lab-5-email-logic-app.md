@@ -169,7 +169,7 @@ paths:
 
 ## Step 5: Connect the Tool to Your Agent
 
-1. Go to **Build** > **Agents** > `company-chatbot`
+1. Go to **Build** > **Agents** > `regulatory-affairs-agent`
 2. In the **Tools** section, click **Add** → **Add tools**
 3. Switch to the **Custom** tab (or find your tool in the list)
 4. Select `send-email`

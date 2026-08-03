@@ -32,29 +32,27 @@ The agent playground lets you:
 
 ---
 
-## Step 1: Navigate to Agents
+## Step 1: Create a New Agents
 
-1. In the **Microsoft Foundry** portal, click **Agents** in the left navigation under **Build**
+1. In the **Microsoft Foundry** portal, click **Build** on the top right. then click **Agents** in the left navigation.
+2. Click **New agent**. 
+3. From the dropdown menu, select **Build an agent**
 
----
+![Create agent](./images/agents-page.png)
 
-## Step 2: Create a New Agent
+4. In the dialog:
+   - **Agent name**: `regulatory-affairs-agent`
+5. Click **Create and open playground**
 
-1. Click the **New agent** button (top right)
-2. From the dropdown menu, select **Build an agent**
-3. In the dialog:
-   - **Agent name**: `company-chatbot`
-4. Click **Create and open playground**
+![Agent create](./images/agent-create.png)
 
 You'll be taken to the **Playground** view of your new agent.
 
-![Agent playground](./images/agent-playground2.png)
-
 ---
 
-## Step 3: Configure the Agent Instructions
+## Step 2: Configure the Agent
 
-The instructions define how your agent behaves. In the **Instructions** textarea, enter:
+1. The instructions define how your agent behaves. In the **Instructions** textarea, enter:
 
 ```text
 You are NovaPharma's regulatory affairs assistant. You help regulatory affairs team members find information about products, dosing guidelines, safety data, submission requirements, and compliance procedures.
@@ -67,15 +65,14 @@ When answering questions:
 - Use proper pharmaceutical terminology
 ```
 
----
+2. Connect the knowledge base by scrolling down in the left panel to the **Knowledge** section. Clicking the expand arrow to open it. And then clicking **Add** → **Connect to Foundry IQ**. 
 
-## Step 4: Connect the Knowledge Base
+![Agent create](./images/agent-create-2.png)
 
-1. Scroll down in the left panel past **Tools** to the **Knowledge** section
-2. Click the expand arrow to open it (if collapsed)
-3. Click **Add** → Select **Existing knowledge base**
-4. Choose `company-knowledge-base` from the list
-5. Click **Add**
+4. For **Connection**, choose `company-assistant-src-xxxx`, for **Knowledge base**, pick `company-knowledge-base` from the list
+5. Click **Connect**
+![Agent create](./images/agent-add-foundryIQ.png)
+
 
 Your agent now has access to the company documents for grounded answers.
 
@@ -120,7 +117,7 @@ Look for these indicators of proper grounding:
 
 In this lab, you:
 
-- ✅ Created a new Foundry Agent (`company-chatbot`)
+- ✅ Created a new Foundry Agent (`regulatory-affairs-agent`)
 - ✅ Defined agent instructions (system prompt)
 - ✅ Connected the knowledge base for RAG-grounded answers
 - ✅ Tested the agent with questions about your company

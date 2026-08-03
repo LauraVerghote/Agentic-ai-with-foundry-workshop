@@ -48,7 +48,7 @@ The agent decides when to use Code Interpreter based on the user's request. If s
 ## Step 1: Navigate to Your Agent
 
 1. In the **Microsoft Foundry** portal, go to **Build** > **Agents**
-2. Click on `company-chatbot` to open it
+2. Click on `regulatory-affairs-agent` to open it
 
 ---
 
