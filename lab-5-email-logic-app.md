@@ -96,7 +96,7 @@ In the **Request Body JSON Schema**, paste:
     },
     "attachment_content": {
       "type": "string",
-      "description": "Base64-encoded file content"
+      "description": "Plain text content of the attachment document"
     }
   },
   "required": ["to", "subject", "body"]
@@ -115,7 +115,7 @@ In the **Request Body JSON Schema**, paste:
    - **To**: Click the lightning bolt icon and select **to**
    - **Subject**: Click the lightning bolt icon and select **subject**
    - **Body**: Click the lightning bolt icon and select **body**
-   - Under **Advanced parameters**, click **Show all**. Under Attachments, click **Add new item**. Set **Name** to `attachment_name` (lightning bolt) and **Attachments Content** to `attachment_content` (lightning bolt)
+   - Under **Advanced parameters**, click **Show all**. Under Attachments, click **Add new item**. Set **Name** to `attachment_name` (lightning bolt) and **Attachments Content** to the expression `base64(triggerBody()?['attachment_content'])` (click the **fx** button to enter expression mode)
 8. In the **False** branch (no attachment), click **Add an action**:
    - Search for **Office 365 Outlook** → Select **Send an email (V2)**
    - **To**: lightning bolt → **to**
@@ -199,11 +199,11 @@ Now register this Logic App as a custom tool directly from your agent:
                   },
                   "attachment_name": {
                     "type": "string",
-                    "description": "Filename for the attachment (e.g. report.docx)"
+                    "description": "Filename for the attachment (e.g. Product_Summary_NovaRelief.txt)"
                   },
                   "attachment_content": {
                     "type": "string",
-                    "description": "Base64-encoded file content for the attachment"
+                    "description": "The plain text content of the attachment document. Do NOT base64 encode it."
                   }
                 },
                 "required": ["to", "subject", "body"]
@@ -235,9 +235,9 @@ You are NovaPharma's regulatory affairs assistant. You help regulatory affairs t
 
 Capabilities:
 1. Knowledge Base: Answer questions using the connected product portfolio and regulatory guidelines
-2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate a .docx Word document. A Product Summary Report template is available as a reference for the standard format.
+2. Document Generation: When asked to create or fill in a document, use the code interpreter to generate it as formatted plain text. A Product Summary Report template is available as a reference for the standard format.
 3. Email: When asked to send an email, use the SendEmail tool. Always confirm the recipient, subject, and body with the user before sending.
-4. Email with attachment: When asked to email a generated document, first generate the .docx file using code interpreter, then read the file content as base64 using Python (import base64; base64.b64encode(open(path,'rb').read()).decode()), and call SendEmail with attachment_name (e.g. "Product_Summary_NovaRelief.docx") and attachment_content (the base64 string).
+4. Email with attachment: When asked to email a generated document, generate the document content as plain text using code interpreter, then call SendEmail with attachment_name (e.g. "Product_Summary_NovaRelief.txt") and attachment_content (the plain text string). Do NOT base64 encode the attachment_content.
 
 When answering questions:
 - Always ground your answers in the knowledge base documents provided
@@ -283,15 +283,16 @@ The agent should:
 
 **Test 3: Generate document and email it** - replace with a real email address
 ```
-Generate a product summary report for NovaRelief and email it as a Word document to regulatory@novapharma.eu
+Generate a product summary report for NovaRelief and email it as a text document to regulatory@novapharma.eu
 ```
 
 The agent should:
-1. Use Code Interpreter to generate a .docx document (using python-docx)
-2. Read the file content as base64 using Python
-3. Ask you to confirm before sending
-4. Call the SendEmail tool with `attachment_name` (e.g. "Product_Summary_NovaRelief.docx") and `attachment_content` (the base64 string)
-5. You should receive the email with the .docx attached
+1. Use Code Interpreter to generate the report as plain text
+2. Ask you to confirm before sending
+3. Call the SendEmail tool with `attachment_name` (e.g. "Product_Summary_NovaRelief.txt") and `attachment_content` (the plain text content)
+4. You should receive the email with the .txt file attached
+
+> 💡 The Logic App handles the base64 encoding server-side, so the agent only needs to send plain text. This avoids payload size limits in the tool call.
 
 ---
 
