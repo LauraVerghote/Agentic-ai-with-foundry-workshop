@@ -79,7 +79,27 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 ![Setting up secure access dialog](./images/foundry-iq-creating.png)
 
-> 💡 This creates an Azure AI Search resource and configures the managed identity permissions automatically.
+> 💡 This creates an Azure AI Search resource and configures some managed identity permissions automatically. However, the agent also needs **Search Index Data Reader** to query the knowledge base. We'll add that now.
+
+5. Once the search resource is created, go to the **Azure Portal** (portal.azure.com)
+6. Navigate to your **AI Search** resource (search for the name shown in the Foundry portal, e.g. `company-assistant-srch-xxxx`)
+7. Click **Access control (IAM)** in the left menu
+8. Click **+ Add** > **Add role assignment**
+
+![Create role assignment](./images/ai-search-role.png)
+
+9. Search for and select **Search Index Data Reader**, then click **Next**
+10. Select **Managed identity**, then click **+ Select members**
+11. In the **Managed identity** dropdown, select **Foundry project**
+12. In the search box, type `company-assistant` to find your Foundry project
+13. Select your Foundry project from the list, then click **Select**
+14. Click **Review + assign**
+
+
+![Create role permissions](./images/ai-search-permissions.png)
+
+
+This ensures your agent can read the knowledge base index when you connect it in Lab 3.
 
 ---
 
@@ -119,6 +139,19 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 5. Under **Files to upload**, you should see both files listed with their sizes
 6. Click **Create**
 
+If you see an error "Couldn't upload files to novapharma-docs. 2 files failed to upload. Reason: File upload processing failed. Please check the file format and try again." when uploading files, you may have a policy blocking this.
+
+1. Go to the **Azure Portal** > your Foundry resource (e.g. `foundry-workshop-[yourname]`) > **Properties**
+2. Find **"Allow API key based authentication"** and set it to **Enabled**
+3. If the setting keeps reverting to Disabled, an Azure Policy is overriding it. In that case:
+   - Go to **Azure Portal** > search **Policy** > **Exemptions** > **+ Create policy exemption**
+   - **Scope**: select your Foundry resource (under your resource group > Microsoft.CognitiveServices/accounts)
+   - **Policy assignment**: select the assignment that enforces `CognitiveServicesDisableLocalAuth`
+   - **Exemption category**: Waiver
+   - Click **Review + Create**
+   - Then go back to the Foundry resource **Properties** and set **"Allow API key based authentication"** to **Enabled** again (it will stick this time)
+4. Go back to the Foundry portal and retry the file upload by clicking **Upload files**
+
 ![Create a new knowledge source page](./images/knowledge-source-create.png)
 
 > ⚠️ **If upload fails**: Wait 2-3 minutes for the managed identity permissions to propagate, then click **Retry**. The search service needs time for its role assignments to take effect.
@@ -154,29 +187,6 @@ Your knowledge base is now ready to be connected to an agent in the next lab.
 - **Multiple knowledge sources**: A single knowledge base can have multiple sources. You can click "Add sources" to connect additional data from blob storage, SharePoint, or web URLs.
 - **Production data sources**: In a real scenario, you would typically connect to Azure Blob Storage or SharePoint where your team already stores documents, rather than uploading files directly.
 
----
-
-## 🔧 Troubleshooting
-
-### "Failed to list key. disableLocalAuth is set to be true" when uploading files
-
-If you see a 400 error when uploading files, your AI Search resource may have API key authentication disabled:
-
-1. Go to the **Azure Portal** > Your AI Search resource > **Settings** > **Keys**
-2. Under **API Access control**, select **Both** (allows both API keys and role-based access)
-3. Click **Save**
-4. Go back to the Foundry portal and retry the file upload
-
-### 403 Forbidden when connecting knowledge base to agent
-
-If you get a "403 Forbidden" error in Lab 3 when testing the agent with the knowledge base, the **project's managed identity** needs RBAC roles on the AI Search service:
-
-1. Go to the **Azure Portal** → Your AI Search resource
-2. Click **Access control (IAM)** → **Add role assignment**
-3. Assign **Search Index Data Reader** to your Foundry project's managed identity
-4. Wait 1-2 minutes for propagation, then retry
-
-> 💡 The project identity is different from the Foundry resource identity. You can find it under your project resource in the Azure Portal → Identity.
 
 ---
 

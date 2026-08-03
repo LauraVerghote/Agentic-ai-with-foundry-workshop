@@ -76,17 +76,38 @@ When answering questions:
 
 Your agent now has access to the company documents for grounded answers.
 
+6. Click **Save** at the top right (the version number will increment)
+
 ---
 
-## Step 5: Save and Test
+## Step 3: Enable Tracing
 
-1. Click **Save** at the top right (the version number will increment)
-2. In the **Chat** panel on the right, try these test questions:
+Before testing, connect Application Insights so you can view detailed traces of how your agent processes requests (you'll need this in later labs):
+
+1. At the top of the agent view, click the **Traces** tab
+2. Click **Connect** on the right side
+
+![Enable traces](./images/enable-traces.png)
+
+3. On the App. Insights resource tab, select **Create new resource** in the dropdown to create a new Application Insights resource (or connect an existing one). 
+4. Leave the default naming and click **Create**
+4. Follow the wizard and click **Connect**
+
+Once connected, traces are automatically captured for all agent interactions. You can return to this tab anytime to see detailed execution logs.
+
+> 💡 Traces typically appear within 2-5 minutes of an interaction.
+
+---
+
+## Step 4: Test
+
+1. Go back the the **Playground** tab. In the **Chat** panel on the right, try these test questions:
 
 **Test 1: Product information**
 ```
 What are the approved indications for NovaRelief?
 ```
+![Test the first version of our agent](./images/test-agent-0.png)
 
 **Test 2: Dosing question**
 ```
@@ -104,7 +125,7 @@ The agent should answer using information from your knowledge base documents, wi
 
 ---
 
-## Step 6: Review the Response
+## Step 5: Review the Response
 
 Look for these indicators of proper grounding:
 - **Citations**: The agent should reference specific documents
@@ -120,6 +141,7 @@ In this lab, you:
 - ✅ Created a new Foundry Agent (`regulatory-affairs-agent`)
 - ✅ Defined agent instructions (system prompt)
 - ✅ Connected the knowledge base for RAG-grounded answers
+- ✅ Enabled tracing with Application Insights
 - ✅ Tested the agent with questions about your company
 
 Your basic chatbot agent is now working! In the next labs, you'll add more capabilities like document generation and email sending.

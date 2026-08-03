@@ -46,16 +46,19 @@ The agent determines when to call the tool based on the user's request, formats 
 ## Step 1: Create a Logic App
 
 1. Open the **Azure Portal** (portal.azure.com)
-2. Click **+ Create a resource**
-3. Search for **Logic App** and select it
-4. Click **Create**
+2. Click **+ Create a resource** on the left panel
+3. Search for **Logic App** and click on **Create**
+4. Select **Consumption** (Multi-tenant) as the hosting option and click **Select**
 5. Fill in the details:
    - **Subscription**: Select your subscription
    - **Resource Group**: `rg-foundry-workshop-[yourname]`
    - **Logic App name**: `logic-send-email-[yourname]`
    - **Region**: East US
-   - **Plan type**: **Consumption** (pay per execution)
+   - **Workflow Type**: Stateful
 6. Click **Review + create** → **Create**
+
+![Test the first version of our agent](./images/logic-app-1.png)
+
 7. Once deployed, click **Go to resource**
 
 ---

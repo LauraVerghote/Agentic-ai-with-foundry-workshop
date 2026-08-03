@@ -62,10 +62,7 @@ The agent decides when to use Code Interpreter based on the user's request. If s
 
 > 💡 You should now see "Code interpreter" listed as an enabled tool alongside "Web search".
 
-Alternatively, you can use the full tool dialog:
-1. Click **Add** → **Add tools**
-2. In the "Select a tool" dialog, find **Code interpreter**
-3. Click it, then click **Add tool**
+![Add code interpreter](./images/add-code-interpreter.png)
 
 ---
 
@@ -96,25 +93,28 @@ When creating documents:
 
 ---
 
-## Step 4: Save the Agent
+## Step 4: Upload the Template
 
-Click **Save** in the top right. The version number will increment.
+Upload the product summary template so the agent can use it as a reference format:
+
+1. In the **Tools** section (left panel), find **Code interpreter**
+2. Click **+ Files** next to Code interpreter
+3. In the "Upload files" dialog, click **browse for files**
+4. Select `data/product_summary_template.docx` from this repository
+5. Wait for the status to show **"Success"**
+6. Click **Attach**
+
+You should now see `product_summary_template.docx` listed under Code interpreter in the Tools section.
+
+> ⚠️ Do NOT use the paperclip icon in the chat area. That only accepts images and PDFs. The **"+ Files"** button next to Code interpreter is the correct upload method for document templates.
+
+![Add template to code interpreter](./images/upload-template.png)
 
 ---
 
-## Step 5: Upload the Template
+## Step 5: Save the Agent
 
-Before testing, upload the product summary template so the agent knows the expected format:
-
-1. In the **Chat** panel, click the **attach** button (paperclip icon)
-2. Upload the file `data/product_summary_template.docx` from this repository
-3. Tell the agent:
-
-```
-This is our standard Product Summary Report template. Please use this format when I ask you to generate product summaries.
-```
-
-The agent will analyze the template structure and use it as a reference.
+Click **Save** in the top right. The version number will increment.
 
 ---
 
@@ -131,6 +131,8 @@ The agent should:
 1. Look up NovaRelief details in the knowledge base
 2. Write Python code using `python-docx` to create a filled-in template
 3. Return a downloadable Product Summary Report with all fields completed
+
+![Test code interpreter](./images/test-code-interpreter.png)
 
 **Test 2: Different product**
 ```
@@ -149,7 +151,7 @@ Create a Word document summarizing the adverse reactions and drug interactions f
 ## Step 7: Review the Trace
 
 1. Click on the **Traces** tab at the top of the agent view
-2. Find the most recent trace
+2. Find the most recent trace (there might be some delay in the trace and conversation view. The response will appear the fastest under the responses view)
 3. Expand it to see:
    - The agent's decision to use Code Interpreter
    - The Python code it wrote
@@ -158,6 +160,8 @@ Create a Word document summarizing the adverse reactions and drug interactions f
 
 This is useful for debugging if the document doesn't look right. You can see exactly what code was generated.
 
+![Traces code interpreter](./images/traces-code-interpreter.png)
+
 ---
 
 ## ✅ What You Accomplished
@@ -165,6 +169,7 @@ This is useful for debugging if the document doesn't look right. You can see exa
 In this lab, you:
 
 - ✅ Enabled the **Code Interpreter** built-in tool
+- ✅ Uploaded a Product Summary Report template to Code Interpreter
 - ✅ Updated agent instructions to include document generation
 - ✅ Tested document creation with pharma-specific prompts
 - ✅ Verified the agent can produce downloadable product summary reports
