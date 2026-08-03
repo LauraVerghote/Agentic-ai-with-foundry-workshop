@@ -292,7 +292,7 @@ The agent should:
 3. Call the SendEmail tool with `attachment_name` (e.g. "Product_Summary_NovaRelief.doc") and `attachment_content` (the HTML string)
 4. You should receive the email with a .doc file attached that opens in Microsoft Word
 
-> 💡 The agent sends HTML content with a `.doc` extension. Word opens these files natively. The Logic App handles base64 encoding server-side, so the agent only needs to send the HTML string. This avoids payload size limits that would occur with binary .docx files.
+> 💡 **Why HTML instead of .docx?** Foundry's OpenAPI tool calls have a parameter size limit of ~14,000 characters. A real `.docx` file is binary, and even a simple report becomes ~50,000+ characters when base64-encoded, which gets truncated. By sending HTML content (~5,000 characters for the same report) with a `.doc` extension, we stay well within the limit. Word opens HTML-based `.doc` files natively, so the recipient experience is the same.
 
 ---
 
