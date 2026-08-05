@@ -101,6 +101,8 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 
 This ensures your agent can read the knowledge base index when you connect it in Lab 3.
 
+> **Note**: The AI Search resource creation can take up to 5 minutes to complete. This is normal.
+
 ---
 
 ## Step 3: Create a Knowledge Base
