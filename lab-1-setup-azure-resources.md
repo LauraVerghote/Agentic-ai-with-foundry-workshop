@@ -28,7 +28,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
 | Type | Model | What it does |
 |------|-------|--------------|
-| Chat / Reasoning | `gpt-5.5` | Generates natural language responses (1M token context) |
+| Chat / Reasoning | `gpt-5.6-sol` | Generates natural language responses, tool calling, and code interpreter |
 | Embedding | `text-embedding-3-small` | Converts text to vectors for semantic search (1536 dimensions) |
 
 ---
@@ -86,9 +86,9 @@ A deployment is an instance of a model that you can call via API. In this worksh
 3. In case you are asked to Select a project to continue, select (`company-assistant`) → "Let's go"
 
 
-4. **Deploy Chat Model** (default: `gpt-5.5`):
+4. **Deploy Chat Model** (default: `gpt-5.6-sol`):
    - Click on the Discover tab on the top → Models tab on the left
-   - Search for `gpt-5.5` (or your chosen model from the Model Options section)
+   - Search for `gpt-5.6-sol` (or your chosen model from the Model Options section)
    - Click the model → Deploy on the top right → "Default settings"
 
    <img src="images/foundry-models-1.png" width="800"/>
@@ -103,7 +103,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 You should now have:
 - [ ] Resource group: `rg-foundry-workshop-[yourname]`
 - [ ] Foundry resource with project: `company-assistant`
-- [ ] Deployed models: chat model (e.g., `gpt-5.5`) and embedding model (e.g., `text-embedding-3-small`)
+- [ ] Deployed models: chat model (e.g., `gpt-5.6-sol`) and embedding model (e.g., `text-embedding-3-small`)
 
 ---
 

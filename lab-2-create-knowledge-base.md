@@ -112,7 +112,7 @@ This ensures your agent can read the knowledge base index when you connect it in
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
    - **Description**: `NovaPharma product portfolio and regulatory guidelines`
-   - **Chat completions model**: Select `gpt-5.5` (from your deployments)
+   - **Chat completions model**: Select `gpt-5.6-sol` (from your deployments)
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
    - **Retrieval instructions**:
@@ -173,7 +173,7 @@ You're now on the knowledge base detail page showing your configured `company-kn
 In this lab, you:
 
 - ✅ Connected a Foundry IQ resource (Azure AI Search) with automated RBAC
-- ✅ Created a knowledge base with `gpt-5.5` for reasoning
+- ✅ Created a knowledge base with `gpt-5.6-sol` for reasoning
 - ✅ Uploaded product portfolio and regulatory guidelines through the portal
 - ✅ Files are automatically chunked, embedded with `text-embedding-3-small`, and indexed
 

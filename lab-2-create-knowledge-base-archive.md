@@ -166,7 +166,7 @@ A "Setting up secure access" dialog will appear, showing that Foundry is grantin
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
    - **Description**: `Company information and policies for the chatbot agent`
-   - **Chat completions model**: Select `gpt-5.5` (from your deployments)
+   - **Chat completions model**: Select `gpt-5.6-sol` (from your deployments)
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
 
