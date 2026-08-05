@@ -56,7 +56,7 @@ The agent determines when to call the tool based on the user's request, formats 
    - **Subscription**: Select your subscription
    - **Resource Group**: `rg-foundry-workshop-[yourname]`
    - **Logic App name**: `logic-send-email-[yourname]`
-   - **Region**: East US
+   - **Region**: Sweden Central
    - **Workflow Type**: Stateful
 6. Click **Review + create** → **Create**
 
@@ -169,7 +169,7 @@ Now register this Logic App as a custom tool directly from your agent:
   },
   "servers": [
     {
-      "url": "https://prod-XX.eastus.logic.azure.com:443/workflows/YOUR_WORKFLOW_ID/triggers/When_an_HTTP_request_is_received/paths"
+      "url": "https://prod-XX.swedencentral.logic.azure.com:443/workflows/YOUR_WORKFLOW_ID/triggers/When_an_HTTP_request_is_received/paths"
     }
   ],
   "paths": {

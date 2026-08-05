@@ -68,7 +68,7 @@ flowchart LR
 3. Configure:
    - **Resource group**: `rg-foundry-workshop-[yourname]`
    - **Storage account name**: `stfoundryws[yourname]` (must be globally unique, lowercase, no special characters)
-   - **Region**: East US
+   - **Region**: Sweden Central
    - **Performance**: Standard
    - **Redundancy**: Locally-redundant storage (LRS)
 

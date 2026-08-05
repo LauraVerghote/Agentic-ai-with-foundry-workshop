@@ -68,7 +68,7 @@ The first time you use Knowledge, you'll need to connect an AI Search resource:
    - **Resource name**: Leave the auto-generated name
    - **Subscription**: Select your subscription
    - **Resource group**: `rg-foundry-workshop-[yourname]`
-   - **Region**: Try selecting the same region as your Foundry resource (East US). If you see a "region at capacity" warning, select a different region that has availability (e.g., Sweden Central).
+   - **Region**: Sweden Central (same region as your Foundry resource)
    - **Pricing tier**: Basic
 3. Check the **acknowledgment checkbox** about additional costs
 4. Click **Create**

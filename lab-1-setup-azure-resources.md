@@ -55,7 +55,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 
 3. Configure:
    - **Name**: `rg-foundry-workshop-[yourname]`
-   - **Region**: East US
+   - **Region**: Sweden Central
 4. Click "Review + Create" → "Create"
 
    <img src="images/resource-group-console-3.png" width="500"/>
@@ -70,7 +70,7 @@ A deployment is an instance of a model that you can call via API. In this worksh
 3. Configure:
    - **Resource group**: `rg-foundry-workshop-[yourname]`
    - **Name**: `foundry-workshop-[yourname]`
-   - **Region**: East US
+   - **Region**: Sweden Central
    - **Default project name**: `company-assistant`
 4. Click "Review + Create" → "Create"
 
