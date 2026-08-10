@@ -154,7 +154,7 @@ the parameters as JSON, and sends them to the Logic App's HTTP endpoint.
 
 ## Step 3: Get the HTTP URL
 
-After saving, the HTTP trigger will show a **HTTP POST URL** at the top of the
+After saving, the HTTP trigger will show a **HTTP URL** at the top of the
 trigger step.
 
 1. Click on the "When a HTTP request is received" step
