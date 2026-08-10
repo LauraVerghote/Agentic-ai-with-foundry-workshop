@@ -150,7 +150,7 @@ the parameters as JSON, and sends them to the Logic App's HTTP endpoint.
     - **Body**: `{"status": "Email sent successfully"}`
 11. Click **Save**
 
-## ![Logic app workflow with attachment condition](./images/logic-app-2.png)
+![Logic app workflow with attachment condition](./images/logic-app-2.png)
 
 ## Step 3: Get the HTTP URL
 
