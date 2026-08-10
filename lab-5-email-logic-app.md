@@ -296,7 +296,7 @@ The agent should:
 
 1. Recognize this as an email request.
 2. Confirm the details with you.
-3. Call the `send-email` tool.
+3. Call the `SendEmail` tool.
 4. Report success or failure.
 
 **Test 2: Knowledge + email combo** - replace the placeholder with your email
