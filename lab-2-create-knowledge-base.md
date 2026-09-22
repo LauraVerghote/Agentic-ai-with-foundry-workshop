@@ -4,11 +4,13 @@
 
 ---
 
-**⏱️ Estimated Time**: 15-20 minutes
+**⏱️ Estimated Time**: 10-15 minutes
 
 ## Overview
 
-In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. You'll upload NovaPharma's product portfolio and regulatory guidelines, and Foundry IQ will handle storage, indexing, and vectorization automatically.
+In this lab, you'll create a **knowledge base** using **Foundry IQ**, the managed knowledge layer in Microsoft Foundry. The workshop administrator has already provisioned Azure AI Search and made the NovaPharma documents available through its underlying data source.
+
+You will connect the existing Foundry IQ resource to your project, select the prepared data, and create your own knowledge base. This project-level connection is not automatically available in other participants' projects.
 
 ---
 
@@ -16,96 +18,62 @@ In this lab, you'll create a **knowledge base** using **Foundry IQ**, the manage
 
 ### What is Foundry IQ?
 
-Foundry IQ is the managed knowledge layer in Microsoft Foundry that connects your enterprise data to AI agents:
+Foundry IQ connects enterprise data to AI agents:
 
-- **Automatic vectorization**: Your documents are automatically chunked, embedded, and indexed
-- **Agentic retrieval**: Complex questions are automatically decomposed into subqueries
-- **Grounded answers with citations**: Returns extractive data with source references
+- **Automatic vectorization**: Documents are chunked, embedded, and indexed
+- **Agentic retrieval**: Complex questions can be decomposed into focused subqueries
+- **Grounded answers with citations**: Responses can include references to source content
 
-### Supported Data Sources
+### Shared Infrastructure, Isolated Configuration
 
-Foundry IQ can connect to multiple types of data sources:
+The administrator manages the shared Azure AI Search service, model deployments, and source documents. You manage the configuration inside your own Foundry project:
 
-| Source | Description |
-|--------|-------------|
-| **Direct file upload** | Upload files directly through the portal (used in this lab) |
-| **Azure Blob Storage** | Files stored in cloud storage containers |
-| **SharePoint** | Documents from SharePoint sites and document libraries |
-| **OneLake** | Data from Microsoft Fabric lakehouses |
-| **Web URLs** | Content from public web pages |
+- Your Foundry IQ connection
+- Your knowledge base and retrieval instructions
+- Your agent's connection to that knowledge base
 
-In this lab, we use **direct file upload** for simplicity. In production, you would typically connect to an existing data source like Azure Blob Storage or SharePoint where your documents already live.
+The backing documents may be stored in Azure Blob Storage or another supported source. You do not need to upload or manage them in this workshop.
 
 ### How It Works
 
 ```mermaid
 flowchart LR
-    A["Upload Documents"] --> B["Foundry IQ"]
-    B --> C["Chunking & Embedding"]
-    C --> D["Vector Index (AI Search)"]
-    D --> E["Agent queries knowledge"]
+    A["Admin-provisioned documents"] --> B["Shared data source"]
+    B --> C["Azure AI Search"]
+    C --> D["Your Foundry IQ connection"]
+    D --> E["Your knowledge base"]
+    E --> F["Your agent"]
 ```
 
 ---
 
-## Step 1: Navigate to Knowledge (Foundry IQ)
+## Step 1: Navigate to Knowledge
 
-1. In the [Microsoft Foundry portal](https://ai.azure.com), make sure you're in your project (`company-assistant`)
+1. In the [Microsoft Foundry portal](https://ai.azure.com), select your project: `company-assistant-[yourname]`
 2. In the left navigation under **Build**, click **Knowledge**
 
-You'll see the **Knowledge (Foundry IQ)** page with two tabs: Knowledge bases and Indexes.
+You'll see the **Knowledge (Foundry IQ)** page with the available knowledge bases and indexes.
 
 ![Foundry IQ Knowledge page](./images/Foundry-IQ.png)
 
 ---
 
-## Step 2: Connect an AI Search Resource
+## Step 2: Connect the Existing Foundry IQ Resource
 
-The first time you use Knowledge, you'll need to connect an AI Search resource:
+The first time you open Knowledge in your project, Foundry asks you to select a Foundry IQ resource.
 
-1. Click **Create new resource**
-2. In the dialog that appears:
-   - **Resource name**: Leave the auto-generated name
-   - **Subscription**: Select your subscription
-   - **Resource group**: `rg-foundry-workshop-[yourname]`
-   - **Region**: Sweden Central (same region as your Foundry resource). If you see a "region at capacity" warning, select a different region that has availability.
-   - **Pricing tier**: Basic
-3. Check the **acknowledgment checkbox** about additional costs
-4. Click **Create**
+1. Click **Connect resource** or **Select resource**, depending on the option shown
+2. Choose the existing Foundry IQ or Azure AI Search resource identified by your workshop facilitator
+3. Do not choose **Create new resource**
+4. Confirm the connection and wait while Foundry validates access
 
-![Create Foundry IQ resource page](./images/Foundry-IQ2.png)
+If Foundry shows a secure-access setup dialog, wait for it to complete. The required resource access has been prepared by the workshop administrator.
 
-A "Setting up secure access" dialog will appear, showing that Foundry is granting the necessary RBAC roles (Search Service Contributor). Wait for it to complete.
-
-![Setting up secure access dialog](./images/foundry-iq-creating.png)
-
-> 💡 This creates an Azure AI Search resource and configures some managed identity permissions automatically. However, the agent also needs **Search Index Data Reader** to query the knowledge base. We'll add that now.
-
-5. Once the search resource is created, go to the **Azure Portal** (portal.azure.com)
-6. Navigate to your **AI Search** resource (search for the name shown in the Foundry portal, e.g. `company-assistant-srch-xxxx`)
-7. Click **Access control (IAM)** in the left menu
-8. Click **+ Add** > **Add role assignment**
-
-![Create role assignment](./images/ai-search-role.png)
-
-9. Search for and select **Search Index Data Reader**, then click **Next**
-10. Select **Managed identity**, then click **+ Select members**
-11. In the **Managed identity** dropdown, select **Foundry project**
-12. In the search box, type `company-assistant` to find your Foundry project
-13. Select your Foundry project from the list, then click **Select**
-14. Click **Review + assign**
-
-
-![Create role permissions](./images/ai-search-permissions.png)
-
-
-This ensures your agent can read the knowledge base index when you connect it in Lab 3.
-
-> **Note**: The AI Search resource creation can take up to 5 minutes to complete. This is normal.
+> 💡 The connection you create belongs to your project. Other participants still need to connect the shared resource from their own projects.
 
 ---
 
-## Step 3: Create a Knowledge Base
+## Step 3: Create the Knowledge Base
 
 1. Click **Create a knowledge base**
 
@@ -114,59 +82,43 @@ This ensures your agent can read the knowledge base index when you connect it in
 2. Fill in the basic configuration:
    - **Name**: `company-knowledge-base`
    - **Description**: `NovaPharma product portfolio and regulatory guidelines`
-   - **Chat completions model**: Select `gpt-5.6-sol` (from your deployments)
+   - **Chat completions model**: Select the administrator-provisioned chat model, for example `gpt-5.6-sol`
    - **Retrieval reasoning effort**: Leave as `Minimal`
    - **Output mode**: Leave as `Extractive data`
    - **Retrieval instructions**:
-     ```
+
+     ```text
      This knowledge base contains pharmaceutical product information and regulatory guidelines for NovaPharma. When retrieving information, prioritize precise dosing, contraindications, and safety data. Distinguish clearly between the three products: NovaRelief (pain/NSAID), CardioShield (cardiovascular/ARB), and ImmunoBoost (immunology/biologic). For regulatory questions, include relevant timelines and submission requirements.
      ```
-3. In the **Knowledge sources (Foundry IQ)** section, click **Upload files**
-
-![Create a new knowledge base page](./images/knowledge-base-create.png)
 
 ---
 
-## Step 4: Upload Files as a Knowledge Source
+## Step 4: Connect the Prepared Knowledge Source
 
-1. Download the 2 files from this repo in the folder `data/knowledge_base/`:
-   - `product_portfolio.txt`
-   - `regulatory_guidelines.txt`
-2. In the **Knowledge sources (Foundry IQ)** section on the same page, click **Upload files**.
-3. Select both `.txt` files from your downloads and open them.
-4. A "Create a knowledge source" dialog appears:
-   - **Name**: `novapharma-docs`
-   - **Description**: `NovaPharma product portfolio and regulatory compliance guidelines`
-   - **Embedding model**: `text-embedding-3-small` should be auto-selected
-5. Under **Files to upload**, you should see both files listed with their sizes
-6. Click **Create**
+1. In **Knowledge sources (Foundry IQ)**, click **Add source**
+2. Select the existing source or index identified by your workshop facilitator
+3. Confirm that it points to the preloaded NovaPharma product portfolio and regulatory guidelines
+4. If prompted for an embedding model, select the administrator-provisioned embedding deployment, for example `text-embedding-3-small`
+5. Click **Connect** or **Add**
+6. Wait until the source status is **Active**
 
-If you see an error "Couldn't upload files to novapharma-docs. 2 files failed to upload. Reason: File upload processing failed. Please check the file format and try again." when uploading files, you may have a policy blocking this.
+Do not upload the files from the repository. They are included there for reference only; the workshop source has already been loaded by the administrator.
 
-1. Go to the **Azure Portal** > your Foundry resource (e.g. `foundry-workshop-[yourname]`) > **Properties**
-2. Find **"Allow API key based authentication"** and set it to **Enabled**
-3. If the setting keeps reverting to Disabled, an Azure Policy is overriding it. In that case:
-   - Go to **Azure Portal** > search **Policy** > **Exemptions** > **+ Create policy exemption**
-   - **Scope**: select your Foundry resource (under your resource group > Microsoft.CognitiveServices/accounts)
-   - **Policy assignment**: select the assignment that enforces `CognitiveServicesDisableLocalAuth`
-   - **Exemption category**: Waiver
-   - Click **Review + Create**
-   - Then go back to the Foundry resource **Properties** and set **"Allow API key based authentication"** to **Enabled** again (it will stick this time)
-4. Go back to the Foundry portal and retry the file upload by clicking **Upload files**
-
-![Create a new knowledge source page](./images/knowledge-source-create.png)
-
-> ⚠️ **If upload fails**: Wait 2-3 minutes for the managed identity permissions to propagate, then click **Retry**. The search service needs time for its role assignments to take effect.
+> ⚠️ If the prepared source or index is not listed, stop and ask the workshop facilitator to verify your access. Do not create another Search service or upload a duplicate copy of the documents.
 
 ---
 
-## Step 5: Save the Knowledge Base
+## Step 5: Save and Verify the Knowledge Base
 
-1. Once you see the knowledge source with **"Active"** status, click **Save knowledge base** at the top right
+1. Click **Save knowledge base**
+2. Open `company-knowledge-base`
+3. Use the test experience, if available, to ask:
 
-You're now on the knowledge base detail page showing your configured `company-knowledge-base`.
+   ```text
+   What are the approved indications for NovaRelief?
+   ```
 
-
+4. Confirm that the answer contains information from the prepared NovaPharma content and includes a source reference
 
 ---
 
@@ -174,21 +126,20 @@ You're now on the knowledge base detail page showing your configured `company-kn
 
 In this lab, you:
 
-- ✅ Connected a Foundry IQ resource (Azure AI Search) with automated RBAC
-- ✅ Created a knowledge base with `gpt-5.6-sol` for reasoning
-- ✅ Uploaded product portfolio and regulatory guidelines through the portal
-- ✅ Files are automatically chunked, embedded with `text-embedding-3-small`, and indexed
+- ✅ Connected your project to the administrator-provisioned Foundry IQ and Azure AI Search resources
+- ✅ Reused the prepared NovaPharma documents without uploading duplicates
+- ✅ Created a project-scoped knowledge base with retrieval instructions
+- ✅ Verified that the knowledge base can retrieve grounded content
 
-Your knowledge base is now ready to be connected to an agent in the next lab.
+Your knowledge base is ready to be connected to an agent in the next lab.
 
 ---
 
 ## 💡 Tips
 
-- **Adding more documents later**: You can always come back and click "Upload files" to add more documents to the knowledge source.
-- **Multiple knowledge sources**: A single knowledge base can have multiple sources. You can click "Add sources" to connect additional data from blob storage, SharePoint, or web URLs.
-- **Production data sources**: In a real scenario, you would typically connect to Azure Blob Storage or SharePoint where your team already stores documents, rather than uploading files directly.
-
+- **Project isolation**: A connection made in your project does not automatically appear in another participant's project
+- **Shared data**: Multiple projects can use the same administrator-managed Search service and source data
+- **Production sources**: Azure Blob Storage, SharePoint, OneLake, and other supported systems can remain the system of record while Foundry IQ provides retrieval
 
 ---
 

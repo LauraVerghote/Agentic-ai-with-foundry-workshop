@@ -1,14 +1,16 @@
-# Lab 1: Set Up Azure Resources
+# Lab 1: Create Your Foundry Project
 
 [← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-create-knowledge-base.md)
 
 ---
 
-**⏱️ Estimated Time**: 15-20 minutes
+**⏱️ Estimated Time**: 5-10 minutes
 
 ## Overview
 
-In this lab, you'll set up Microsoft Foundry and deploy the AI models that power your agent.
+The workshop administrator has already provisioned the shared **Microsoft Foundry resource**, the required **model deployments**, and **Azure AI Search**. In this lab, you'll create your own project under that shared Foundry resource.
+
+Your project gives you an isolated workspace for your knowledge connection, knowledge base, agent, tools, and traces while still allowing you to use the resources prepared by the administrator.
 
 ---
 
@@ -22,88 +24,65 @@ Microsoft Foundry is a unified AI platform that provides:
 - **Development Tools**: Build, test, and deploy AI applications
 - **Monitoring**: Track usage, costs, and performance
 
-### What are Model Deployments?
+### Shared Resources and Project Isolation
 
-A deployment is an instance of a model that you can call via API. In this workshop we'll deploy two models:
+The administrator has prepared these shared resources:
 
-| Type | Model | What it does |
-|------|-------|--------------|
-| Chat / Reasoning | `gpt-5.6-sol` | Generates natural language responses, tool calling, and code interpreter |
-| Embedding | `text-embedding-3-small` | Converts text to vectors for semantic search (1536 dimensions) |
+- A Microsoft Foundry resource
+- A chat model deployment, such as `gpt-5.6-sol`
+- An embedding model deployment, such as `text-embedding-3-small`
+- An Azure AI Search service
+- A data source containing the NovaPharma workshop documents
+
+You will create your own **Foundry project** under the shared resource. Project-level configuration is isolated, so the knowledge connection and agent you create will not appear in another participant's project.
 
 ---
 
-## Resources You'll Create
+## What You'll Create
 
-- **Resource Group**: Container for all your Azure resources
-- **Microsoft Foundry**: AI platform hub and project
-- **Model Deployments**: Chat model and embedding model
+- One Microsoft Foundry project under the administrator-provided Foundry resource
 
 ---
 
 ## Instructions
 
-> ✏️ **Replace [yourname]** with your actual name or identifier (e.g., `jsmith`) throughout these instructions. This ensures your resources are uniquely named.
+> ✏️ **Replace `[yourname]`** with your name or identifier, for example `jsmith`. This keeps your project easy to identify.
 
-### 1. Create a Resource Group
+### 1. Open the Shared Foundry Resource
 
 1. Go to [Azure Portal](https://portal.azure.com)
-2. Click "Resource groups" → "Create"
+2. Search for the Foundry resource name provided by your workshop facilitator
+3. Open the resource and confirm that the resource type is **Microsoft Foundry**
 
-   <img src="images/resource-group-console-1.png" width="800"/>
-   <img src="images/resource-group-console-2.png" width="800"/>
+### 2. Create Your Project
 
-3. Configure:
-   - **Name**: `rg-foundry-workshop-[yourname]`
-   - **Region**: Sweden Central
-4. Click "Review + Create" → "Create"
-
-   <img src="images/resource-group-console-3.png" width="500"/>
-
-### 2. Create Microsoft Foundry Resource
-
-1. Search for "Microsoft Foundry" in the top search bar in the Azure Portal
-2. Click "Create"
-
-   <img src="images/foundry-resource-1.png" width="500"/>
-
-3. Configure:
-   - **Resource group**: `rg-foundry-workshop-[yourname]`
-   - **Name**: `foundry-workshop-[yourname]`
-   - **Region**: Sweden Central
-   - **Default project name**: `company-assistant`
-4. Click "Review + Create" → "Create"
-
-   <img src="images/foundry-resource-2.png" width="500"/>
-
-### 3. Deploy AI Models
-
-1. When the deployment is complete, click 'Go to resource' → Click "Go to Foundry portal"
-2. Toggle "New Foundry" experience if prompted
+1. In the Foundry resource menu, under **Resource management**, select **Projects**
+2. Click **Create project**
+3. Enter a unique project name: `company-assistant-[yourname]`
+4. Keep the administrator-provided defaults for the shared Foundry resource and region
+5. Click **Create** and wait for the project deployment to finish
+6. Open the new project, then click **Go to Foundry portal**
+7. Toggle the **New Foundry** experience if prompted
 
    <img src="images/new-foundry.png" width="800"/>
 
-3. In case you are asked to Select a project to continue, select (`company-assistant`) → "Let's go"
+8. If you are asked to select a project, choose `company-assistant-[yourname]`, then click **Let's go**
 
+### 3. Verify the Shared Model Deployments
 
-4. **Deploy Chat Model** (default: `gpt-5.6-sol`):
-   - Click on the Discover tab on the top → Models tab on the left
-   - Search for `gpt-5.6-sol` (or your chosen model from the Model Options section)
-   - Click the model → Deploy on the top right → "Default settings"
+1. In the Foundry portal, go to Build on the top right
+2. Go to models on the left to see your model deployments
+3. Confirm that you can see the administrator-provisioned chat model and embedding model
 
-   <img src="images/foundry-models-1.png" width="800"/>
-   <img src="images/foundry-models-2.png" width="800"/>
-
-5. **Deploy Embedding Model** (default: `text-embedding-3-small`):
-   - Repeat for `text-embedding-3-small`
-   - Discover → Models → Search → Deploy → "Default settings"
+Do not create or deploy another model. Your project uses the deployments attached to the shared Foundry resource.
 
 ### ✅ Checkpoint
 
 You should now have:
-- [ ] Resource group: `rg-foundry-workshop-[yourname]`
-- [ ] Foundry resource with project: `company-assistant`
-- [ ] Deployed models: chat model (e.g., `gpt-5.6-sol`) and embedding model (e.g., `text-embedding-3-small`)
+- [ ] Access to the administrator-provisioned Foundry resource
+- [ ] Your own project: `company-assistant-[yourname]`
+- [ ] Access to the administrator-provisioned chat and embedding model deployments
+
 
 ---
 

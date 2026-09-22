@@ -1,6 +1,6 @@
 # Lab 4: Add the Code Interpreter Tool
 
-[← Back to Workshop Overview](./README.md) | [← Previous: Lab 3](./lab-3-create-agent.md) | [Next: Lab 5 →](./lab-5-email-logic-app.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 3](./lab-3-create-agent.md) | [Next: Lab 5 →](./lab-5-trace-agent.md)
 
 ---
 
@@ -22,7 +22,6 @@ Tools extend what an agent can do beyond just answering questions. A tool is a f
 - **Knowledge bases**: search company documents (Lab 3)
 - **Code Interpreter**: write and run Python code to create files
 - **Web Search**: search the internet for current information
-- **Custom tools**: call external APIs (Lab 5)
 
 ### What is Code Interpreter?
 
@@ -148,22 +147,6 @@ Create a Word document summarizing the adverse reactions and drug interactions f
 
 ---
 
-## Step 7: Review the Trace
-
-1. Click on the **Traces** tab at the top of the agent view
-2. Find the most recent trace (there might be some delay in the trace and conversation view. The response will appear the fastest under the responses view)
-3. Expand it to see:
-   - The agent's decision to use Code Interpreter
-   - The Python code it wrote
-   - The execution result
-   - The file output
-
-This is useful for debugging if the document doesn't look right. You can see exactly what code was generated.
-
-![Traces code interpreter](./images/traces-code-interpreter.png)
-
----
-
 ## ✅ What You Accomplished
 
 In this lab, you:
@@ -176,6 +159,8 @@ In this lab, you:
 
 Your agent can now both answer regulatory questions AND produce filled-in document templates!
 
+In Lab 5, you'll run one end-to-end request and use tracing to verify that the agent retrieves grounded knowledge before it generates the Word document.
+
 ---
 
 ## 💡 Tips
@@ -187,4 +172,4 @@ Your agent can now both answer regulatory questions AND produce filled-in docume
 
 ---
 
-[← Back to Workshop Overview](./README.md) | [← Previous: Lab 3](./lab-3-create-agent.md) | [Next: Lab 5 →](./lab-5-email-logic-app.md)
+[← Back to Workshop Overview](./README.md) | [← Previous: Lab 3](./lab-3-create-agent.md) | [Next: Lab 5 →](./lab-5-trace-agent.md)

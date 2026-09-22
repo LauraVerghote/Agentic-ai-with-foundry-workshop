@@ -2,49 +2,53 @@
 
 ## 🎯 Workshop Overview
 
-In this hands-on workshop you'll build an agentic AI assistant for a fictional pharmaceutical company (NovaPharma) using Microsoft Foundry. The agent can search a product and regulatory knowledge base, fill in regulatory document templates, and send emails, all orchestrated through a single Foundry Agent.
+In this hands-on workshop you'll build an agentic AI assistant for a fictional pharmaceutical company, NovaPharma, using Microsoft Foundry. The agent searches a product and regulatory knowledge base, then fills a Word document template with grounded information. You'll use tracing to inspect the complete workflow.
 
 ### What You'll Build
 
 By the end of this workshop you will have:
-- A knowledge base with product portfolio and regulatory guidelines, powered by Foundry IQ and Azure AI Search
-- A custom tool that fills in product summary report templates
-- A Logic App that sends emails on behalf of the agent
-- A fully functional regulatory affairs assistant that combines all of the above
+- Your own project under an administrator-provisioned Foundry resource
+- A project-scoped Foundry IQ knowledge base connected to administrator-provisioned Azure AI Search and source documents
+- A regulatory affairs agent grounded in product and regulatory content
+- A Code Interpreter tool that fills a Product Summary Report Word template
+- An end-to-end trace showing knowledge retrieval followed by document generation
 
 ### Learning Objectives
 
-- Set up Microsoft Foundry and deploy AI models
-- Prepare and index documents for RAG (Retrieval-Augmented Generation)
-- Use Foundry IQ to create a managed knowledge base
-- Build custom agent tools (regulatory document generation)
-- Integrate Logic Apps as agent actions (email)
-- Create and test a multi-tool Foundry Agent
+- Create a project under a shared Microsoft Foundry resource
+- Reuse administrator-provisioned model deployments, Azure AI Search, and source documents
+- Connect Foundry IQ and create a project-scoped knowledge base
+- Build and test a grounded Foundry Agent
+- Use Code Interpreter to generate a Word document from a template
+- Inspect traces to verify retrieval and tool execution order
 
 ## 📋 Prerequisites
 
-- **Azure subscription** with contributor access
-- **Microsoft Foundry access**
+- Access to the Azure subscription and administrator-provisioned Foundry resource used for the workshop
+- Permission to create a project under the shared Foundry resource
+- Access to the administrator-provisioned model deployments and Azure AI Search service
 - A modern web browser
+
+The workshop facilitator provides the names of the shared Foundry resource, Foundry IQ or Azure AI Search resource, and prepared knowledge source or index.
 
 ## 🗂️ Workshop Structure
 
 | Lab | Description | Time |
 |-----|-------------|------|
-| [Lab 1: Set Up Azure Resources](./lab-1-setup-azure-resources.md) | Create Foundry project and deploy models | 15-20 min |
-| [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Upload product and regulatory documents to Foundry IQ | 15-20 min |
+| [Lab 1: Create Your Foundry Project](./lab-1-setup-azure-resources.md) | Create a project under the shared Foundry resource and verify model access | 5-10 min |
+| [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Connect Foundry IQ to the prepared Search resource and source data | 10-15 min |
 | [Lab 3: Create Your First Agent](./lab-3-create-agent.md) | Build a regulatory affairs assistant grounded in your knowledge base | 15-20 min |
-| [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Enable a tool that fills in product summary templates | 20-30 min |
-| [Lab 5: Create an Email Action with Logic Apps](./lab-5-email-logic-app.md) | Create a Logic App that sends emails and attach generated documents | 20-30 min |
+| [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Enable Code Interpreter and attach the product summary template | 10-15 min |
+| [Lab 5: Trace Knowledge and Document Generation](./lab-5-trace-agent.md) | Verify that the agent retrieves knowledge before generating the Word document | 10-15 min |
 
-**Total estimated time**: 85-120 minutes
+**Total estimated time**: 50-75 minutes
 
 ## Additional Resources
 
 - [Microsoft Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-foundry)
 - [Understanding RAG](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
 - [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)
-- [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/)
+- [Microsoft Foundry Observability](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/observability)
 
 ## 📄 License
 

@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this lab, you'll create a **Foundry Agent** and connect it to your knowledge base. By the end, you'll have a working regulatory affairs assistant that can answer questions about NovaPharma's products and regulatory guidelines using the documents you uploaded in Lab 2.
+In this lab, you'll create a **Foundry Agent** and connect it to your knowledge base. By the end, you'll have a working regulatory affairs assistant that can answer questions about NovaPharma's products and regulatory guidelines using the administrator-prepared documents you connected in Lab 2.
 
 ---
 
@@ -32,7 +32,7 @@ The agent playground lets you:
 
 ---
 
-## Step 1: Create a New Agents
+## Step 1: Create a New Agent
 
 1. In the **Microsoft Foundry** portal, click **Build** on the top right. then click **Agents** in the left navigation.
 2. Click **New agent**. 
@@ -147,7 +147,7 @@ In this lab, you:
 - ✅ Enabled tracing with Application Insights
 - ✅ Tested the agent with questions about your company
 
-Your basic chatbot agent is now working! In the next labs, you'll add more capabilities like document generation and email sending.
+Your grounded agent is now working. In the next labs, you'll add document generation and inspect the complete execution through tracing.
 
 ---
 
