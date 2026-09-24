@@ -96,21 +96,22 @@ Now evaluate similar interactions with Microsoft Foundry's built-in evaluators.
     
     Because this workshop has only a limited number of existing conversations, select **Simulated data**, then click **Generate**.
 
+
    <img src="images/evaluation-2.png" width="800"/>
    
-7. In **Create conversations**, configure the simulation:
+7. In **Create conversations**, configure the simulation and click **Next**
    1. Click **Upload dataset** and upload [`data/evaluation/novarelief_simulation_scenarios.jsonl`](./data/evaluation/novarelief_simulation_scenarios.jsonl)
    2. Select the uploaded dataset. It contains 30 scenarios covering document generation, groundedness, dosing, special populations, safety, pharmacovigilance, regulatory operations, quality, product information, and clarification behavior.
-   3. Select an available simulator model. Use `gpt-4.1` when available.
+
+   <img src="images/evaluation-3.png" width="800"/>
+
+   3. Select an available simulator model.
    4. Set **Number of simulated conversations per scenario** to `1` and **Number of turns per conversation** to `6`.
    5. Select **Confirm**.
-8. Select these conversation evaluators when available:
-   - **Task Completion**: Checks whether the agent completed the requested workflow
-   - **Customer Satisfaction**: Estimates whether the interaction met the user's needs
-   - **Coherence**: Checks whether the conversation is logically consistent
-   - **Groundedness**: Checks whether the response is supported by the retrieved context
-9. Name the evaluation `novarelief-grounded-report-evaluation`
-10. Review the configuration, then click **Submit**
+8. Leave the Configure agents on default
+9. Leave the default Criteria (TaskCompletion, CustomerSatisfaction, Groundedness, Coherence)
+10. For the evaluation name, choose a name e.g. eval-nova-pharma
+11. Review the configuration, then click **Submit**
 
 The evaluation can take a few minutes. Its status changes from **In Progress** to **Completed**, **Partial**, or **Failed**.
 
@@ -129,66 +130,9 @@ The evaluation can take a few minutes. Its status changes from **In Progress** t
 
 Do not treat a score by itself as proof that the document is correct. Use the evaluator explanation, the retrieved source content, the generated document, and the trace together.
 
-### Evaluation Checkpoint
 
-- [ ] The evaluation completed successfully
-- [ ] The selected trace contains the expected query, response, and retrieved context
-- [ ] Groundedness and relevance results include understandable explanations
-- [ ] Any low score can be linked to evidence in the trace or generated document
 
 ---
-
-## Troubleshooting
-
-### No Knowledge Retrieval Operation
-
-- Confirm that `company-knowledge-base` is connected in the agent's **Knowledge** section
-- Check that the knowledge source status is **Active**
-- Use the exact test prompt, which explicitly requires retrieval before generation
-- Verify that the answer includes citations or source references
-
-### Code Interpreter Runs Before Retrieval
-
-- Confirm that the agent instructions say to ground document content in the knowledge base
-- Add `First retrieve... Then generate...` to the prompt
-- Start a new conversation and test again
-
-### No Word File is Produced
-
-- Confirm that Code Interpreter is enabled
-- Confirm that `product_summary_template.docx` is attached under Code Interpreter, not only in the chat
-- Open the Code Interpreter span and inspect the execution error
-- Correct the agent instructions or template attachment, save the agent, and rerun the test
-
-### Trace is Missing
-
-- Confirm that Application Insights is connected
-- Wait 2-5 minutes, then refresh
-- Check that you are viewing traces for the correct project and agent
-
-### Evaluation is Partial or Failed
-
-- Open the run details and identify which evaluator failed
-- Confirm that all required fields are mapped
-- For **Groundedness**, confirm that **context** maps to the retrieved Foundry IQ content
-- Confirm that the judge model is available and has sufficient quota
-- Rerun the evaluation after correcting the configuration
-
----
-
-## ✅ What You Accomplished
-
-In this lab, you:
-
-- ✅ Ran the complete grounded document-generation workflow
-- ✅ Located the matching agent trace
-- ✅ Verified that Foundry IQ retrieved knowledge before document generation
-- ✅ Inspected the Code Interpreter execution and Word output
-- ✅ Used trace evidence to validate and troubleshoot agent behavior
-- ✅ Evaluated the captured interaction for groundedness, relevance, coherence, and fluency
-- ✅ Reviewed evaluator scores and explanations alongside the trace
-
-You now have a regulatory affairs agent that retrieves approved knowledge, creates a Word document from a template, exposes the full execution path through tracing, and can be evaluated with repeatable quality measures.
 
 ---
 
