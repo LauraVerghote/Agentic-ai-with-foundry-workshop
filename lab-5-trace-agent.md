@@ -1,16 +1,16 @@
-# Lab 5: Trace Knowledge Retrieval and Document Generation
+# Lab 5: Trace and Evaluate the Agent Workflow
 
 [← Back to Workshop Overview](./README.md) | [← Previous: Lab 4](./lab-4-word-document-tool.md)
 
 ---
 
-**⏱️ Estimated Time**: 10-15 minutes
+**⏱️ Estimated Time**: 20-25 minutes
 
 ## Overview
 
-In this lab, you'll test the complete regulatory-document workflow and inspect its trace. The trace should show that your agent first retrieves grounded product information from Foundry IQ and then uses Code Interpreter to create a Word document from the attached template.
+In this lab, you'll test the complete regulatory-document workflow, inspect its trace, and run an evaluation against the captured interaction. The trace should show that your agent first retrieves grounded product information from Foundry IQ and then uses Code Interpreter to create a Word document from the attached template.
 
-Tracing makes the agent's decisions and tool calls visible. It helps you verify that the generated document is grounded in approved source material and diagnose failures without guessing.
+Tracing makes the agent's decisions and tool calls visible. Evaluation adds repeatable quality scores and explanations so you can assess the response instead of relying only on visual inspection.
 
 ---
 
@@ -139,6 +139,54 @@ This sequence demonstrates an agentic workflow rather than a single model respon
 
 ---
 
+## Step 7: Evaluate the Captured Trace
+
+Now evaluate the same interaction with Microsoft Foundry's built-in evaluators.
+
+1. In the left navigation, select **Evaluation**
+2. Click **Create**
+3. For the evaluation target, select **Traces**
+4. Select `regulatory-affairs-agent` and a time range that includes the trace you inspected
+5. Select the trace that matches your NovaRelief report request
+6. Review the automatic field mappings:
+    - **query**: The NovaRelief report request
+    - **response**: The agent's final response
+    - **context**: The content retrieved from Foundry IQ
+7. If a required field is **Unassigned**, use its dropdown to select the matching trace field
+8. Select these evaluators when available:
+    - **Groundedness**: Checks whether the response is supported by the retrieved context
+    - **Relevance**: Checks whether the response addresses the request
+    - **Coherence**: Checks whether the response is logically consistent
+    - **Fluency**: Checks whether the response is clearly written
+9. Name the evaluation `novarelief-grounded-report-evaluation`
+10. Review the configuration, then click **Submit**
+
+The evaluation can take a few minutes. Its status changes from **In Progress** to **Completed**, **Partial**, or **Failed**.
+
+> 💡 AI-assisted evaluators use a judge model and consume model quota. The available evaluators can vary by project configuration and portal version.
+
+---
+
+## Step 8: Review the Evaluation Results
+
+1. From **Evaluation**, open `novarelief-grounded-report-evaluation`
+2. Review the aggregate score for each evaluator
+3. Open the evaluated row to see the query, response, score, and explanation
+4. Confirm that the **Groundedness** explanation recognizes support from the retrieved NovaRelief context
+5. Confirm that the **Relevance** explanation reflects the requested report task
+6. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, or the final response
+
+Do not treat a score by itself as proof that the document is correct. Use the evaluator explanation, the retrieved source content, the generated document, and the trace together.
+
+### Evaluation Checkpoint
+
+- [ ] The evaluation completed successfully
+- [ ] The selected trace contains the expected query, response, and retrieved context
+- [ ] Groundedness and relevance results include understandable explanations
+- [ ] Any low score can be linked to evidence in the trace or generated document
+
+---
+
 ## Troubleshooting
 
 ### No Knowledge Retrieval Operation
@@ -167,6 +215,14 @@ This sequence demonstrates an agentic workflow rather than a single model respon
 - Wait 2-5 minutes, then refresh
 - Check that you are viewing traces for the correct project and agent
 
+### Evaluation is Partial or Failed
+
+- Open the run details and identify which evaluator failed
+- Confirm that all required fields are mapped
+- For **Groundedness**, confirm that **context** maps to the retrieved Foundry IQ content
+- Confirm that the judge model is available and has sufficient quota
+- Rerun the evaluation after correcting the configuration
+
 ---
 
 ## ✅ What You Accomplished
@@ -178,8 +234,10 @@ In this lab, you:
 - ✅ Verified that Foundry IQ retrieved knowledge before document generation
 - ✅ Inspected the Code Interpreter execution and Word output
 - ✅ Used trace evidence to validate and troubleshoot agent behavior
+- ✅ Evaluated the captured interaction for groundedness, relevance, coherence, and fluency
+- ✅ Reviewed evaluator scores and explanations alongside the trace
 
-You now have a regulatory affairs agent that retrieves approved knowledge, creates a Word document from a template, and exposes the full execution path through tracing.
+You now have a regulatory affairs agent that retrieves approved knowledge, creates a Word document from a template, exposes the full execution path through tracing, and can be evaluated with repeatable quality measures.
 
 ---
 

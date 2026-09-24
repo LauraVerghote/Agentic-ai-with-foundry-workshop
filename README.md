@@ -2,7 +2,7 @@
 
 ## 🎯 Workshop Overview
 
-In this hands-on workshop you'll build an agentic AI assistant for a fictional pharmaceutical company, NovaPharma, using Microsoft Foundry. The agent searches a product and regulatory knowledge base, then fills a Word document template with grounded information. You'll use tracing to inspect the complete workflow.
+In this hands-on workshop you'll build an agentic AI assistant for a fictional pharmaceutical company, NovaPharma, using Microsoft Foundry. The agent searches a product and regulatory knowledge base, then fills a Word document template with grounded information. You'll use tracing and evaluation to inspect and assess the complete workflow.
 
 ### What You'll Build
 
@@ -12,6 +12,7 @@ By the end of this workshop you will have:
 - A regulatory affairs agent grounded in product and regulatory content
 - A Code Interpreter tool that fills a Product Summary Report Word template
 - An end-to-end trace showing knowledge retrieval followed by document generation
+- An evaluation of the captured interaction using built-in quality evaluators
 
 ### Learning Objectives
 
@@ -21,6 +22,7 @@ By the end of this workshop you will have:
 - Build and test a grounded Foundry Agent
 - Use Code Interpreter to generate a Word document from a template
 - Inspect traces to verify retrieval and tool execution order
+- Evaluate a captured interaction for groundedness, relevance, coherence, and fluency
 
 ## 📋 Prerequisites
 
@@ -39,9 +41,9 @@ The workshop facilitator provides the names of the shared Foundry resource, Foun
 | [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Connect Foundry IQ to the prepared Search resource and source data | 10-15 min |
 | [Lab 3: Create Your First Agent](./lab-3-create-agent.md) | Build a regulatory affairs assistant grounded in your knowledge base | 15-20 min |
 | [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Enable Code Interpreter and attach the product summary template | 10-15 min |
-| [Lab 5: Trace Knowledge and Document Generation](./lab-5-trace-agent.md) | Verify that the agent retrieves knowledge before generating the Word document | 10-15 min |
+| [Lab 5: Trace and Evaluate the Agent Workflow](./lab-5-trace-agent.md) | Verify tool execution order and evaluate the captured interaction | 20-25 min |
 
-**Total estimated time**: 50-75 minutes
+**Total estimated time**: 60-85 minutes
 
 ## Additional Resources
 
