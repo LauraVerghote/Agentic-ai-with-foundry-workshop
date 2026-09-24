@@ -12,26 +12,6 @@ In this lab, you'll create a **Foundry Agent** and connect it to your knowledge 
 
 ---
 
-## 🎓 Key Concepts
-
-### What is a Foundry Agent?
-
-A Foundry Agent is an AI-powered assistant that can:
-- Follow **instructions** you define (system prompt)
-- Use **tools** to access external data and perform actions
-- Query **knowledge bases** for grounded, citation-backed answers
-- Maintain **conversation context** across multiple turns
-
-### Agent Playground
-
-The agent playground lets you:
-- Configure your agent's model, instructions, tools, and knowledge
-- Test conversations in real-time
-- View traces and metrics
-- Iterate on your agent's behavior before publishing
-
----
-
 ## Step 1: Create a New Agent
 
 1. In the **Microsoft Foundry** portal, click **Build** on the top right. then click **Agents** in the left navigation.
@@ -51,7 +31,8 @@ You'll be taken to the **Playground** view of your new agent.
 
 ## Step 2: Configure the Agent
 
-1. The instructions define how your agent behaves. In the **Instructions** textarea, enter:
+1. Select the reasoning model that was deployed by your administrator.
+2. The instructions define how your agent behaves. In the **Instructions** text area, enter:
 
 ```text
 You are NovaPharma's regulatory affairs assistant. You help regulatory affairs team members find information about products, dosing guidelines, safety data, submission requirements, and compliance procedures.

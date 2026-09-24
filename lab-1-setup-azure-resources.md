@@ -14,67 +14,38 @@ Your project gives you an isolated workspace for your knowledge connection, know
 
 ---
 
-## 🎓 Key Concepts
-
-### What is Microsoft Foundry?
-
-Microsoft Foundry is a unified AI platform that provides:
-- **Project Management**: Organize your AI resources and deployments
-- **Model Catalog**: Access to GPT, embedding, and other AI models
-- **Development Tools**: Build, test, and deploy AI applications
-- **Monitoring**: Track usage, costs, and performance
-
-### Shared Resources and Project Isolation
-
-The administrator has prepared these shared resources:
-
-- A Microsoft Foundry resource
-- A chat model deployment, such as `gpt-5.6-sol`
-- An embedding model deployment, such as `text-embedding-3-small`
-- An Azure AI Search service
-- A data source containing the NovaPharma workshop documents
-
-You will create your own **Foundry project** under the shared resource. Project-level configuration is isolated, so the knowledge connection and agent you create will not appear in another participant's project.
-
----
-
-## What You'll Create
-
-- One Microsoft Foundry project under the administrator-provided Foundry resource
-
----
 
 ## Instructions
 
-> ✏️ **Replace `[yourname]`** with your name or identifier, for example `jsmith`. This keeps your project easy to identify.
 
-### 1. Open the Shared Foundry Resource
 
-1. Go to [Azure Portal](https://portal.azure.com)
-2. Search for the Foundry resource name provided by your workshop facilitator
-3. Open the resource and confirm that the resource type is **Microsoft Foundry**
+### Step 1. Create you project
 
-### 2. Create Your Project
+1. Go to [Azure Portal](https://portal.azure.com) and log in
+2. Search for the Foundry resource name provided by your workshop facilitator on the top search bar
 
-1. In the Foundry resource menu, under **Resource management**, select **Projects**
-2. Click **Create project**
-3. Enter a unique project name: `company-assistant-[yourname]`
-4. Keep the administrator-provided defaults for the shared Foundry resource and region
-5. Click **Create** and wait for the project deployment to finish
-6. Open the new project, then click **Go to Foundry portal**
-7. Toggle the **New Foundry** experience if prompted
+   <img src="images/foundry-search.png" width="800"/>
+
+
+1. In the Foundry resource menu, under **Resource management** on the left bar, select **Projects**
+2. Click **New**
+
+
+   <img src="images/create-project.png" width="800"/>
+
+3. Enter a unique project name e.g.: `company-assistant-[yourname]`
+4. Click **Create** and wait for the project deployment to finish
+5. Open the new project, then click **Go to Foundry portal**
+6. Toggle the **New Foundry** experience if prompted
 
    <img src="images/new-foundry.png" width="800"/>
 
-8. If you are asked to select a project, choose `company-assistant-[yourname]`, then click **Let's go**
 
-### 3. Verify the Shared Model Deployments
+### Step 2. Verify the Shared Model Deployments
 
 1. In the Foundry portal, go to Build on the top right
 2. Go to models on the left to see your model deployments
 3. Confirm that you can see the administrator-provisioned chat model and embedding model
-
-Do not create or deploy another model. Your project uses the deployments attached to the shared Foundry resource.
 
 ### ✅ Checkpoint
 

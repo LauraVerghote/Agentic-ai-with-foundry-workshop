@@ -12,24 +12,7 @@ In this lab you'll enable the **Code Interpreter** tool on your agent. Code Inte
 
 You'll also upload a **Product Summary Report template** that the agent will use to generate filled-in regulatory documents based on the knowledge base.
 
----
 
-## 🎓 Key Concepts
-
-### What are Agent Tools?
-
-Tools extend what an agent can do beyond just answering questions. A tool is a function the agent can call when it determines the user's request requires an action. Examples:
-- **Knowledge bases**: search company documents (Lab 3)
-- **Code Interpreter**: write and run Python code to create files
-- **Web Search**: search the internet for current information
-
-### What is Code Interpreter?
-
-Code Interpreter is a **built-in tool** that:
-- Runs Python code in an isolated sandbox
-- Can install and use common Python packages (e.g., `python-docx`, `matplotlib`, `pandas`)
-- Produces downloadable files (Word docs, PDFs, images, CSVs)
-- Has no access to your Azure resources or network (it's fully sandboxed)
 
 ### How It Works
 
@@ -111,13 +94,11 @@ You should now see `product_summary_template.docx` listed under Code interpreter
 
 ---
 
-## Step 5: Save the Agent
-
 Click **Save** in the top right. The version number will increment.
 
 ---
 
-## Step 6: Test Document Generation
+## Step 5: Test Document Generation
 
 In the **Chat** panel on the right, try these prompts:
 

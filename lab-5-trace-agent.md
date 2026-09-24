@@ -12,32 +12,6 @@ In this lab, you'll test the complete regulatory-document workflow, inspect its 
 
 Tracing makes the agent's decisions and tool calls visible. Evaluation adds repeatable quality scores and explanations so you can assess the response instead of relying only on visual inspection.
 
----
-
-## 🎓 Key Concepts
-
-### What is a Trace?
-
-A trace records one end-to-end agent request. It contains a timeline of operations, often called spans, such as:
-
-- The user's request
-- The model's reasoning and tool selection
-- Foundry IQ knowledge retrieval
-- Code Interpreter execution
-- The final response and generated file
-
-### Expected Execution Flow
-
-```mermaid
-flowchart LR
-    A["User requests a product report"] --> B["Agent calls Foundry IQ"]
-    B --> C["Knowledge base returns grounded product data"]
-    C --> D["Agent calls Code Interpreter"]
-    D --> E["Python fills the Word template"]
-    E --> F["Agent returns a downloadable .docx file"]
-```
-
-The important validation is the order. The knowledge retrieval must happen before document generation so the report is based on the prepared NovaPharma content.
 
 ---
 
@@ -46,13 +20,13 @@ The important validation is the order. The knowledge retrieval must happen befor
 1. In the **Microsoft Foundry** portal, select your project: `company-assistant-[yourname]`
 2. Go to **Build** > **Agents** and open `regulatory-affairs-agent`
 3. Open the **Traces** tab
-4. Confirm that the Application Insights connection from Lab 3 is active
+4. Confirm that the Application Insights connection from Lab 3 is active and that you see traces there
 
 If tracing is not connected, click **Connect**, select the Application Insights resource you created in Lab 3, and complete the connection.
 
 ---
 
-## Step 2: Start a Clean Test Conversation
+## Step 2: Start a Clean Test Conversation and Look at the Traces
 
 1. Return to the agent **Playground**
 2. Start a new conversation so the trace contains only the workflow you want to inspect
@@ -64,24 +38,18 @@ If tracing is not connected, click **Connect**, select the Application Insights 
 
 4. Wait for the agent to finish
 5. Confirm that the response includes a downloadable `.docx` file
-6. Download and open the document, then verify that it follows the Product Summary Report template and contains NovaRelief information
+6. At the bottom of the answer you will see **Traces**. Click on this and this will open the trace for this request. 
 
-> 💡 Keep this conversation open. Its timestamp and prompt will help you identify the matching trace.
+   <img src="images/trace.png" width="800"/>
 
----
+7. In the trace you can see the tools being called and observe that first hte knowledge base was called to get the required info and that after code interpreter was used to generate the file
 
-## Step 3: Find the Trace
+   <img src="images/trace-2.png" width="800"/>
 
-1. Open the **Traces** tab
-2. Refresh the view if the latest request is not visible
-3. Locate the trace that matches your test prompt and timestamp
-4. Open the trace detail or span timeline
-
-Telemetry can take 2-5 minutes to appear. If the conversation is visible before the trace, wait briefly and refresh the Traces view.
 
 ---
 
-## Step 4: Inspect Knowledge Retrieval
+## Step 3: Inspect Knowledge Retrieval and code interpreter
 
 In the trace timeline, find the knowledge or tool operation associated with **Foundry IQ**, the connected knowledge base, or retrieval.
 
@@ -89,51 +57,22 @@ In the trace timeline, find the knowledge or tool operation associated with **Fo
 2. Confirm that it occurs before Code Interpreter
 3. Inspect the available input and output details
 4. Verify that the retrieved content includes NovaRelief facts needed by the report, such as indication, dosing, contraindications, safety data, or storage requirements
-5. Look for a reference to `company-knowledge-base` or the prepared source documents
+5. Expand the Code Interpreter operations
+6. Inspect the generated Python code or execution details, when available
+7. Inspect the final response span and verify that it returns the generated document to the user
 
-The exact span labels can vary by portal version. Use the operation order and the displayed tool or knowledge-base details to identify retrieval.
+So to summarize, the agent did the following:
 
-### Retrieval Checkpoint
+```mermaid
+flowchart TD
+    A["1. The agent interpreted the request as requiring grounded information and a document"]
+    B["2. Foundry IQ retrieved NovaRelief data from the prepared knowledge source"]
+    C["3. The model passed the grounded information into the document-generation step"]
+    D["4. Code Interpreter used Python to fill the Word template"]
+    E["5. The agent returned the generated file"]
 
-- [ ] A knowledge retrieval operation is present
-- [ ] It uses the connected Foundry IQ knowledge base
-- [ ] It returns NovaRelief information
-- [ ] It occurs before document generation
-
----
-
-## Step 5: Inspect Word Document Generation
-
-Next, find the **Code Interpreter** operation in the same trace.
-
-1. Expand the Code Interpreter operation
-2. Confirm that it occurs after knowledge retrieval
-3. Inspect the generated Python code or execution details, when available
-4. Look for use of `python-docx` and the attached `product_summary_template.docx`
-5. Confirm that execution completed successfully and produced a `.docx` file
-6. Inspect the final response span and verify that it returns the generated document to the user
-
-![Trace showing Code Interpreter](./images/traces-code-interpreter.png)
-
-### Generation Checkpoint
-
-- [ ] Code Interpreter runs after knowledge retrieval
-- [ ] The template or its structure is used
-- [ ] The Python execution succeeds
-- [ ] A Word document is produced
-- [ ] The final response contains the downloadable file
-
----
-
-## Step 6: Explain the Trace
-
-Use the trace to summarize what the agent did:
-
-1. The agent interpreted the request as requiring grounded information and a document
-2. Foundry IQ retrieved NovaRelief data from the prepared knowledge source
-3. The model passed the grounded information into the document-generation step
-4. Code Interpreter used Python to fill the Word template
-5. The agent returned the generated file
+    A --> B --> C --> D --> E
+```
 
 This sequence demonstrates an agentic workflow rather than a single model response. The agent chooses and coordinates different capabilities while the trace provides an audit trail.
 
@@ -141,23 +80,35 @@ This sequence demonstrates an agentic workflow rather than a single model respon
 
 ## Step 7: Evaluate the Captured Trace
 
-Now evaluate the same interaction with Microsoft Foundry's built-in evaluators.
+Now evaluate similar interactions with Microsoft Foundry's built-in evaluators.
 
 1. In the left navigation, select **Evaluation**
 2. Click **Create**
-3. For the evaluation target, select **Traces**
-4. Select `regulatory-affairs-agent` and a time range that includes the trace you inspected
-5. Select the trace that matches your NovaRelief report request
-6. Review the automatic field mappings:
-    - **query**: The NovaRelief report request
-    - **response**: The agent's final response
-    - **context**: The content retrieved from Foundry IQ
-7. If a required field is **Unassigned**, use its dropdown to select the matching trace field
-8. Select these evaluators when available:
-    - **Groundedness**: Checks whether the response is supported by the retrieved context
-    - **Relevance**: Checks whether the response addresses the request
-    - **Coherence**: Checks whether the response is logically consistent
-    - **Fluency**: Checks whether the response is clearly written
+
+   <img src="images/evaluation-1.png" width="800"/>
+
+3. For the evaluation target, select **Agent**, select `regulatory-affairs-agent`, and then select **Next**.
+4. For **Scope**, select **Full conversations**, and then select **Next**.
+5. For **Frequency**, select **One time**, and then select **Next**.
+6. Under **Conversation data**, choose between **Simulated data** and **Existing conversations**. 
+    - **Existing conversations** evaluates interactions already captured by the agent, while 
+    - **Simulated data** generates test conversations when little or no real traffic is available. 
+    
+    Because this workshop has only a limited number of existing conversations, select **Simulated data**, then click **Generate**.
+
+   <img src="images/evaluation-2.png" width="800"/>
+   
+7. In **Create conversations**, configure the simulation:
+   1. Click **Upload dataset** and upload [`data/evaluation/novarelief_simulation_scenarios.jsonl`](./data/evaluation/novarelief_simulation_scenarios.jsonl)
+   2. Select the uploaded dataset. It contains 30 scenarios covering document generation, groundedness, dosing, special populations, safety, pharmacovigilance, regulatory operations, quality, product information, and clarification behavior.
+   3. Select an available simulator model. Use `gpt-4.1` when available.
+   4. Set **Number of simulated conversations per scenario** to `1` and **Number of turns per conversation** to `6`.
+   5. Select **Confirm**.
+8. Select these conversation evaluators when available:
+   - **Task Completion**: Checks whether the agent completed the requested workflow
+   - **Customer Satisfaction**: Estimates whether the interaction met the user's needs
+   - **Coherence**: Checks whether the conversation is logically consistent
+   - **Groundedness**: Checks whether the response is supported by the retrieved context
 9. Name the evaluation `novarelief-grounded-report-evaluation`
 10. Review the configuration, then click **Submit**
 
