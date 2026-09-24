@@ -101,7 +101,7 @@ Now evaluate similar interactions with Microsoft Foundry's built-in evaluators.
    
 7. In **Create conversations**, configure the simulation and click **Next**
    1. Click **Upload dataset** and upload [`data/evaluation/novarelief_simulation_scenarios.jsonl`](./data/evaluation/novarelief_simulation_scenarios.jsonl)
-   2. Select the uploaded dataset. It contains 30 scenarios covering document generation, groundedness, dosing, special populations, safety, pharmacovigilance, regulatory operations, quality, product information, and clarification behavior.
+   2. Select the uploaded dataset. It contains 10 scenarios covering document generation, groundedness, dosing, special populations, safety, pharmacovigilance, regulatory operations, quality, product information, and clarification behavior.
 
    <img src="images/evaluation-3.png" width="800"/>
 
@@ -109,7 +109,7 @@ Now evaluate similar interactions with Microsoft Foundry's built-in evaluators.
    4. Set **Number of simulated conversations per scenario** to `1` and **Number of turns per conversation** to `6`.
    5. Select **Confirm**.
 8. Leave the Configure agents on default
-9. Leave the default Criteria (TaskCompletion, CustomerSatisfaction, Groundedness, Coherence)
+9. For Criteria Keep TaskCompletion and CustomerSatisfaction under agents and keep Coherence under Quality. Remove any others. 
 10. For the evaluation name, choose a name e.g. eval-nova-pharma
 11. Review the configuration, then click **Submit**
 
@@ -124,9 +124,12 @@ The evaluation can take a few minutes. Its status changes from **In Progress** t
 1. From **Evaluation**, open `novarelief-grounded-report-evaluation`
 2. Review the aggregate score for each evaluator
 3. Open the evaluated row to see the query, response, score, and explanation
-4. Confirm that the **Groundedness** explanation recognizes support from the retrieved NovaRelief context
-5. Confirm that the **Relevance** explanation reflects the requested report task
-6. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, or the final response
+4. Check whether the evaluated conversation contains the passages returned by the knowledge-base tool, not only the tool call
+5. If the passages are present, confirm that the **Groundedness** explanation recognizes support from the retrieved NovaRelief context
+6. If every conversation receives zero or near-zero Groundedness while other criteria pass, inspect several row explanations. Repeated messages such as `No knowledge-base results are provided` indicate missing evaluator context, not necessarily failed retrieval.
+7. Open the corresponding trace and verify the retrieval output. If the trace contains the expected passages but the evaluation row does not, treat the result as a context-propagation limitation and do not tune the agent prompt based on that Groundedness score.
+8. Review **TaskCompletion**, **CustomerSatisfaction**, and **Coherence** alongside Groundedness to separate task-quality issues from missing evaluator context
+9. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, context propagation, or the final response
 
 Do not treat a score by itself as proof that the document is correct. Use the evaluator explanation, the retrieved source content, the generated document, and the trace together.
 
