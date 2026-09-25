@@ -17,7 +17,7 @@ Tracing makes the agent's decisions and tool calls visible. Evaluation adds repe
 
 ## Step 1: Confirm Tracing is Connected
 
-1. In the **Microsoft Foundry** portal, select your project: `company-assistant-[yourname]`
+1. In the **Microsoft Foundry** portal, select your existing project
 2. Go to **Build** > **Agents** and open `regulatory-affairs-agent`
 3. Open the **Traces** tab
 4. Confirm that the Application Insights connection from Lab 3 is active and that you see traces there

@@ -1,4 +1,4 @@
-# Lab 1: Create Your Foundry Project
+# Lab 1: Open Your Foundry Project
 
 [← Back to Workshop Overview](./README.md) | [Next: Lab 2 →](./lab-2-create-knowledge-base.md)
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-The workshop administrator has already provisioned the shared **Microsoft Foundry resource**, the required **model deployments**, and **Azure AI Search**. In this lab, you'll create your own project under that shared Foundry resource.
+A **Microsoft Foundry resource** and **project** have already been provisioned for you. The required **model deployments** and **Azure AI Search** are also available. In this lab, you'll open your existing project and verify that the model deployments are available.
 
 Your project gives you an isolated workspace for your knowledge connection, knowledge base, agent, tools, and traces while still allowing you to use the resources prepared by the administrator.
 
@@ -19,29 +19,18 @@ Your project gives you an isolated workspace for your knowledge connection, know
 
 
 
-### Step 1. Create you project
+### Step 1. Open Your Project
 
-1. Go to [Azure Portal](https://portal.azure.com) and log in
-2. Search for the Foundry resource name provided by your workshop facilitator on the top search bar
-
-   <img src="images/foundry-search.png" width="800"/>
-
-
-1. In the Foundry resource menu, under **Resource management** on the left bar, select **Projects**
-2. Click **New**
-
-
-   <img src="images/create-project.png" width="800"/>
-
-3. Enter a unique project name e.g.: `company-assistant-[yourname]`
-4. Click **Create** and wait for the project deployment to finish
-5. Open the new project, then click **Go to Foundry portal**
-6. Toggle the **New Foundry** experience if prompted
+1. Go to the [Microsoft Foundry portal](https://ai.azure.com) and sign in
+2. On the home page, select your existing project
+3. If the project is not shown, select **View all projects** and search for the project name provided by your workshop facilitator
+4. Open the project
+5. Toggle the **New Foundry** experience if prompted
 
    <img src="images/new-foundry.png" width="800"/>
 
 
-### Step 2. Verify the Shared Model Deployments
+### Step 2. Verify the Model Deployments
 
 1. In the Foundry portal, go to Build on the top right
 2. Go to models on the left to see your model deployments
@@ -50,8 +39,8 @@ Your project gives you an isolated workspace for your knowledge connection, know
 ### ✅ Checkpoint
 
 You should now have:
-- [ ] Access to the administrator-provisioned Foundry resource
-- [ ] Your own project: `company-assistant-[yourname]`
+- [ ] Access to your Foundry resource
+- [ ] The project open in the Microsoft Foundry portal
 - [ ] Access to the administrator-provisioned chat and embedding model deployments
 
 

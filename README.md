@@ -7,7 +7,7 @@ In this hands-on workshop you'll build an agentic AI assistant for a fictional p
 ### What You'll Build
 
 By the end of this workshop you will have:
-- Your own project under an administrator-provisioned Foundry resource
+- Your own pre-created project under a Foundry resource
 - A project-scoped Foundry IQ knowledge base connected to administrator-provisioned Azure AI Search and source documents
 - A regulatory affairs agent grounded in product and regulatory content
 - A Code Interpreter tool that fills a Product Summary Report Word template
@@ -16,7 +16,7 @@ By the end of this workshop you will have:
 
 ### Learning Objectives
 
-- Create a project under a shared Microsoft Foundry resource
+- Open an existing project under your Microsoft Foundry resource
 - Reuse administrator-provisioned model deployments, Azure AI Search, and source documents
 - Connect Foundry IQ and create a project-scoped knowledge base
 - Build and test a grounded Foundry Agent
@@ -26,18 +26,17 @@ By the end of this workshop you will have:
 
 ## 📋 Prerequisites
 
-- Access to the Azure subscription and administrator-provisioned Foundry resource used for the workshop
-- Permission to create a project under the shared Foundry resource
+- Access to the Azure subscription, Foundry resource, and pre-created project used for the workshop
 - Access to the administrator-provisioned model deployments and Azure AI Search service
 - A modern web browser
 
-The workshop facilitator provides the names of the shared Foundry resource, Foundry IQ or Azure AI Search resource, and prepared knowledge source or index.
+The workshop facilitator provides the names of your Foundry resource and project, the Foundry IQ or Azure AI Search resource, and the prepared knowledge source or index.
 
 ## 🗂️ Workshop Structure
 
 | Lab | Description | Time |
 |-----|-------------|------|
-| [Lab 1: Create Your Foundry Project](./lab-1-setup-azure-resources.md) | Create a project under the shared Foundry resource and verify model access | 5-10 min |
+| [Lab 1: Open Your Foundry Project](./lab-1-setup-azure-resources.md) | Open the existing project under your Foundry resource and verify model access | 5-10 min |
 | [Lab 2: Create a Knowledge Base](./lab-2-create-knowledge-base.md) | Connect Foundry IQ to the prepared Search resource and source data | 10-15 min |
 | [Lab 3: Create Your First Agent](./lab-3-create-agent.md) | Build a regulatory affairs assistant grounded in your knowledge base | 15-20 min |
 | [Lab 4: Create a Word Document Tool](./lab-4-word-document-tool.md) | Enable Code Interpreter and attach the product summary template | 10-15 min |
@@ -58,6 +57,6 @@ This workshop content is provided for educational purposes.
 
 ---
 
-**Ready to begin?** Start with [Lab 1: Set Up Azure Resources](./lab-1-setup-azure-resources.md).
+**Ready to begin?** Start with [Lab 1: Open Your Foundry Project](./lab-1-setup-azure-resources.md).
 
 > **Note**: This workshop uses the **New Foundry** portal experience at [ai.azure.com](https://ai.azure.com). Make sure the "New Foundry" toggle is enabled in the top navigation bar.
