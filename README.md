@@ -22,7 +22,7 @@ By the end of this workshop you will have:
 - Build and test a grounded Foundry Agent
 - Use Code Interpreter to generate a Word document from a template
 - Inspect traces to verify retrieval and tool execution order
-- Evaluate a captured interaction for groundedness, relevance, coherence, and fluency
+- Evaluate a captured interaction for =relevance, coherence, and fluency
 
 ## 📋 Prerequisites
 

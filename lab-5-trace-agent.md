@@ -113,7 +113,7 @@ Now evaluate similar interactions with Microsoft Foundry's built-in evaluators.
 10. For the evaluation name, choose a name e.g. eval-nova-pharma
 11. Review the configuration, then click **Submit**
 
-The evaluation can take a few minutes. Its status changes from **In Progress** to **Completed**, **Partial**, or **Failed**.
+The evaluation will take around 7 minutes. Its status changes from **In Progress** to **Completed**, **Partial**, or **Failed**.
 
 > 💡 AI-assisted evaluators use a judge model and consume model quota. The available evaluators can vary by project configuration and portal version.
 
@@ -124,14 +124,8 @@ The evaluation can take a few minutes. Its status changes from **In Progress** t
 1. From **Evaluation**, open `novarelief-grounded-report-evaluation`
 2. Review the aggregate score for each evaluator
 3. Open the evaluated row to see the query, response, score, and explanation
-4. Check whether the evaluated conversation contains the passages returned by the knowledge-base tool, not only the tool call
-5. If the passages are present, confirm that the **Groundedness** explanation recognizes support from the retrieved NovaRelief context
-6. If every conversation receives zero or near-zero Groundedness while other criteria pass, inspect several row explanations. Repeated messages such as `No knowledge-base results are provided` indicate missing evaluator context, not necessarily failed retrieval.
-7. Open the corresponding trace and verify the retrieval output. If the trace contains the expected passages but the evaluation row does not, treat the result as a context-propagation limitation and do not tune the agent prompt based on that Groundedness score.
-8. Review **TaskCompletion**, **CustomerSatisfaction**, and **Coherence** alongside Groundedness to separate task-quality issues from missing evaluator context
-9. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, context propagation, or the final response
 
-Do not treat a score by itself as proof that the document is correct. Use the evaluator explanation, the retrieved source content, the generated document, and the trace together.
+9. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, context propagation, or the final response
 
 
 
