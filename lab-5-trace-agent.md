@@ -125,6 +125,8 @@ The evaluation will take around 7 minutes. Its status changes from **In Progress
 2. Review the aggregate score for each evaluator
 3. Open the evaluated row to see the query, response, score, and explanation
 
+   <img src="images/evaluations.png" width="800"/>
+
 9. Review low scores or failed evaluators alongside the trace to identify whether the issue came from retrieval, tool execution, context propagation, or the final response
 
 
