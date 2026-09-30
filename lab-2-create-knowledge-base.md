@@ -96,8 +96,7 @@ If Foundry shows a secure-access setup dialog, wait for it to complete. The requ
 ## Step 4: Connect the Prepared Knowledge Source
 
 1. In **Knowledge sources (Foundry IQ)**, click **Add source**
-2. Select the existing source or index identified by your workshop facilitator
-3. Confirm that it points to the preloaded NovaPharma product portfolio and regulatory guidelines
+2. Select **Use existing sources** and elect the index identified by your workshop facilitator. 
 4. If prompted for an embedding model, select the administrator-provisioned embedding deployment, for example `text-embedding-3-small`
 5. Click **Connect** or **Add**
 6. Wait until the source status is **Active**
