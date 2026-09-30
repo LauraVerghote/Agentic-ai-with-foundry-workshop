@@ -63,7 +63,7 @@ You'll see the **Knowledge (Foundry IQ)** page with the available knowledge base
 The first time you open Knowledge in your project, Foundry asks you to select a Foundry IQ resource.
 
 1. Click **Connect resource** or **Select resource**, depending on the option shown
-2. Choose the existing Foundry IQ or Azure AI Search resource identified by your workshop facilitator
+2. Choose the existing Foundry IQ or Azure AI Search resource identified by your workshop facilitator. Choose Managed identity as Authentication type
 3. Do not choose **Create new resource**
 4. Confirm the connection and wait while Foundry validates access
 
